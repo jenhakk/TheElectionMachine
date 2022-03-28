@@ -13,7 +13,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Election machine</title>
-<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/style2.css" />
 </head>
 <body>
 	<div class="first">
