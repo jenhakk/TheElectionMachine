@@ -44,7 +44,8 @@ public class Dao {
 		ArrayList<Candidate> list = new ArrayList<>();
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet RS = stmt.executeQuery("select * from Candidates");
+			
+			ResultSet RS = stmt.executeQuery("select * from Candidates where Candidate_id=1");
 			while (RS.next()) {
 				Candidate c = new Candidate();
 				c.setId(RS.getInt("Candidate_id"));
@@ -52,6 +53,7 @@ public class Dao {
 				c.setFname(RS.getString("Firstname"));
 				c.setPromo(RS.getString("What_to_promote"));
 				list.add(c);
+				
 			}
 			return list;
 		} catch (SQLException e) {
