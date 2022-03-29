@@ -21,25 +21,42 @@
       <div class="col-6">
         <form action="" method="post" class="candform">
 
-          <label for="name">Candidate:</label>
-          <input type="text" id="name" name="name">
-          <br>
+          <div class="row" style="margin-bottom: 5px;">
+            <div class="col">
+              <label for="candi">Candidate</label>
+            </div>
+            <div class="col">
+              <input type="text" id="name" name="name" disabled="disabled">
+            </div>
+          </div>
 
-          <label for="id">Number:</label>
-          <input type="text" id="number" name="number">
+          <div class="row">
+            <div class="col">
+              <label for="candi_id">Number</label>
+            </div>
+            <div class="col">
+              <input type="text" id="candi_id" name="candi_id" disabled="disabled">
+            </div>
+
+          </div>
 
         </form>
+
       </div>
 
       <div class="col-6">
-        <button class="btn btn-primary">PERSONAL INFORMATION</button>
+        <button class="btn btn-primary" id="but-personal">PERSONAL INFORMATION</button>
 
       </div>
     </div>
 
 
     <h2 class="answer">Answer questions and submit</h2>
+    
+    
+    
 
+<!-- Question element starts -->
 
     <p class="question">1. Bananas are the greatest fruits.</p>
     <div class="card" id="ques-card">
@@ -66,8 +83,14 @@
       </div>
 
     </div>
+ <br>
+<!-- Question element ends -->
 
-    <br>
+
+
+
+
+   
 
     <p class="question">2. Yellow is the best color.</p>
     <div class="card" id="ques-card">
@@ -119,7 +142,9 @@
       </div>
     </div>
 
-    <button class="btn btn-primary" id="submit-que" type="submit">SUBMIT</button>
+    <div class="row justify-content-end">
+      <button class="btn btn-primary" id="submit-que" type="submit">SUBMIT</button>
+    </div>
   </div>
 
 
