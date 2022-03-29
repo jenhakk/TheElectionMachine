@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import data.Candidate;
+import data.Questions;
 
 public class Dao {
 	private String url;
@@ -44,16 +45,16 @@ public class Dao {
 		ArrayList<Candidate> list = new ArrayList<>();
 		try {
 			Statement stmt = conn.createStatement();
-			
-			ResultSet RS = stmt.executeQuery("select * from Candidates where Candidate_id=1");
+
+			ResultSet RS = stmt.executeQuery("select * from candidates where candidate_id=1");
 			while (RS.next()) {
 				Candidate c = new Candidate();
-				c.setId(RS.getInt("Candidate_id"));
-				c.setName(RS.getString("Lastname"));
-				c.setFname(RS.getString("Firstname"));
-				c.setPromo(RS.getString("What_to_promote"));
+				c.setId(RS.getInt("candidate_id"));
+				c.setName(RS.getString("lastname"));
+				c.setFname(RS.getString("firstname"));
+				c.setPromo(RS.getString("what_to_promote"));
 				list.add(c);
-				
+
 			}
 			return list;
 		} catch (SQLException e) {
@@ -61,4 +62,22 @@ public class Dao {
 		}
 	}
 
+	public ArrayList<Questions> readAllQuestions() {
+		ArrayList<Questions> list = new ArrayList<>();
+		try {
+			Statement stmt = conn.createStatement();
+			
+			ResultSet RS = stmt.executeQuery("select * from questions");
+			while (RS.next()) {
+				Questions q = new Questions();
+				q.setId(RS.getInt("question_id"));
+				q.setQuestion(RS.getString("question"));
+
+				list.add(q);
+			}
+			return list;
+		} catch (SQLException e) {
+			return null;
+		}
+	}
 }
