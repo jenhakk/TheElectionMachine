@@ -291,13 +291,17 @@
 
     .candform {
 
+        position: absolute;
+        left: 10vw;
         margin-top: 10px;
        
     }
 
-    .personal {
+       
+    #but-personal {
 
-        
+        position: absolute;
+        right: 10vw;        
         width: 200px;
         background-color: white;
         box-shadow: 5px 5px 5px #3A6DF2;
@@ -309,7 +313,7 @@
         font-size: 1.2vw;
     }
 
-    .personal:hover {
+    #but-personal:hover {
         background-color: #628bf2;
         color: white;
 
@@ -317,7 +321,7 @@
 
     .answer {
 
-        margin-top: 40px;
+        margin-top: 100px;
         margin-bottom: 70px;
     }
 
@@ -334,10 +338,12 @@
         padding: 5px;
     }
     
+
     #submit-que {
 
         
-        
+        position: relative;
+        right: 5vw;
         width: 200px;
         background-color: white;
         box-shadow: 5px 5px 5px #3A6DF2;
@@ -348,8 +354,7 @@
         font-size: 25px;
         text-align: center;
         font-size: 1.2vw;
-        position: absolute;
-        right: 10px;
+        
 
     }
 
