@@ -51,7 +51,9 @@
 									<c:out value="${cand.fname}" />
 								</h5>
 								<p class="card-text">
+									"
 									<c:out value="${cand.promo}" />
+									"
 								</p>
 							</div>
 
@@ -62,9 +64,11 @@
 
 
 					</div>
+
 					</a>
 				</div>
 				<br>	
+
 				<!-- -------Candidate element ends---------- -->
 			</c:forEach>
 
