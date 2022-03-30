@@ -5,17 +5,22 @@ public class Candidate {
 	private String name;
 	private String fname;
 	private String promo;
+	private String pic;
 	
-	public Candidate(String id, String name, String fname) {
+	
+
+	public Candidate(String id, String name, String fname, String pic) {
 		// TODO Auto-generated constructor stub
 		setId(id);
 		this.name=name;
 		this.fname=fname;
+		this.pic=pic;
 	}
 
 	public Candidate() {
 		// TODO Auto-generated constructor stub
 	}
+	
 	public int getId() {
 		return id;
 	}
@@ -51,6 +56,14 @@ public class Candidate {
 	
 	public void setPromo(String promo) {
 		this.promo = promo;
+	}
+	
+	public String getPic() {
+		return pic;
+	}
+
+	public void setPic(String pic) {
+		this.pic = pic;
 	}
 
 }
