@@ -32,7 +32,7 @@
 
 			<c:forEach var="cand" items="${requestScope.candilist}">
 				<!-- -------Candidate element starts---------- -->
-				<div class="card" id="card-cand">
+				<div class="card" id="card-cand"><a href="/candidate.html">
 
 					<div class="row no-gutters">
 						<div class="col-4">
@@ -65,8 +65,10 @@
 
 					</div>
 
+					</a>
 				</div>
-				<br>
+				<br>	
+
 				<!-- -------Candidate element ends---------- -->
 			</c:forEach>
 
