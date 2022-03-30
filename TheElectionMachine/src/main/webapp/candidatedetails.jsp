@@ -1,6 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="data.Candidate"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +16,6 @@
     <link rel="stylesheet" href="/css/style2.css">
     <title>Candidate</title>
 </head>
-
 <body id="candidate">
 
     <main class="main_candidate">
@@ -18,14 +23,18 @@
 
         <div class="container">
 
+			<!-- Testin this thing -->
+			<c:forEach var="cand" items="${requestScope.candilist}">
             <div class="rowcan1">
                 <div class="col">
                 <image"><img class="profile_cand" src="/kevin2.png"></image>
-                    <p class="candnumber">1</p>
-                    <h2 class="candname">Kevin Minion</h2>
+                    <p class="candnumber"><c:out value="${cand.id}"/></p>
+                    <h2 class="candname"><c:out value="${cand.name}"/> <c:out value="${cand.fname}"/></h2>
                 </div>
             </div>
-
+            <!--  just for testing for now -->
+			</c:forEach>
+			
             <div class="card">
 
                 <div class="row-info">

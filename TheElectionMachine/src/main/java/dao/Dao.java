@@ -94,4 +94,19 @@ public class Dao {
 			return null;
 		}
 	}
+	
+	public ArrayList<Candidate> spesificCandidate(String id) {
+		try {
+			String sql="Select * from candidates where candidate_id=?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			
+			
+			stmt.executeQuery();
+			return readAllCand();
+		
+		} catch(SQLException e) {
+			return null;
+		}
+		
+	}
 }
