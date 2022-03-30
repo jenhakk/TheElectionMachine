@@ -109,13 +109,13 @@
 /*************CANDIDATE NUMBER PAGE***************/
 
 /*Header 2 settings*/
-#candnum #enter {
+#enter {
 	font-size: 1.5vw;
 	font-weight: 700;
 	text-align: center;
 	padding-top: 0;
 	margin: 0;
-	margin-bottom: 0px;
+	margin-bottom: 40px;
 	margin-top: 200px;
 }
 
