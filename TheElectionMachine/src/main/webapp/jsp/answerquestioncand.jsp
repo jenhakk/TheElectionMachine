@@ -103,6 +103,7 @@
 
 		<div class="row justify-content-end">
 			<button class="btn btn-primary" id="submit-que" type="submit">SUBMIT</button>
+			<button class="btn btn-primary" type="delete">DELETE</button>
 		</div>
 	</div>
 
