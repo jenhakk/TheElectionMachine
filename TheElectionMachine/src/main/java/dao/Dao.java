@@ -53,6 +53,7 @@ public class Dao {
 				c.setName(RS.getString("lastname"));
 				c.setFname(RS.getString("firstname"));
 				c.setPromo(RS.getString("what_to_promote"));
+				c.setPic(RS.getString("picture"));
 				list.add(c);
 
 			}
