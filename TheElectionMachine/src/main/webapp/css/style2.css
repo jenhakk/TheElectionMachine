@@ -438,5 +438,88 @@
         color: white;
 
     }
+    
+    /*****************************PROFILE PAGE************************/
+
+    /*Profilepic*/
+    .profile_cand {
+
+        background-color: white;
+        left: -40px;
+        height:300px;
+        width: 300px;
+        border-radius: 50%;
+        border: 3px solid black;
+        object-fit: cover;
+        object-position: 50% 20%;
+
+    }
+
+     #candidate .main_candidate {
+
+        margin-top: 30px;
+        width: 50%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+       
+     }
+
+     .rowcan1 {
+
+        height: 400px;
+     }
+     
+     /*Candidate number*/
+     p.candnumber {
+
+        font-weight: 500;
+        font-size: 140px;
+        position: relative;
+        top: -160px;
+        right: 100px;
+        font-family: 'Annie Use Your Telescope', cursive;
+    }
+
+    .card {
+
+        border: 2px solid black;
+    }
+    
+    .candname {
+
+        position: relative;
+        top:-200px;
+    }
+
+    .row-info {
+
+        padding-top: 10px;   
+    }
+
+    .textbox {
+        
+        padding-top: 10px;
+        align-items: center;
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .party {
+
+        background-color: #a8bef7; 
+        padding:10px; 
+        border-radius: 5px; 
+        font-size: 25px;
+    }
+    .promote {
+        text-align: center;
+        padding-top: 50px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+        font-size: 23px;
+    } 
+    
 
     
