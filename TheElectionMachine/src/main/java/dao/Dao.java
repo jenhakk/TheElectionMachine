@@ -46,7 +46,7 @@ public class Dao {
 		try {
 			Statement stmt = conn.createStatement();
 
-			ResultSet RS = stmt.executeQuery("select * from candidates where candidate_id=1");
+			ResultSet RS = stmt.executeQuery("select * from candidates");
 			while (RS.next()) {
 				Candidate c = new Candidate();
 				c.setId(RS.getInt("candidate_id"));
