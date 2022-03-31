@@ -69,7 +69,8 @@
 
 			<!-- Not sure if we want to have this, can be deleted later -->
 			<div class="col">
-				<a href="/showanswers.html" class="btn btn-primary">CHECK
+			<!-- link to next servlet, which get candidates answers from a database -->
+				<a href="/ShowAnswersToUser?id=${candidate.id}" class="btn btn-primary">CHECK
 					CANDIDATES ANSWERS</a>
 			</div>
 
