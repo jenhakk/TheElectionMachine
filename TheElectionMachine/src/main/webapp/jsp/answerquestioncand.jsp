@@ -55,8 +55,8 @@
 			</div>
 
 			<div class="col-6">
-				<button class="btn btn-primary" id="but-personal">PERSONAL
-					INFORMATION</button>
+				<a href="/profile.html"><div class="btn btn-primary" id="but-personal">PERSONAL
+					INFORMATION</div></a>
 
 			</div>
 		</div>
@@ -103,6 +103,7 @@
 
 		<div class="row justify-content-end">
 			<button class="btn btn-primary" id="submit-que" type="submit">SUBMIT</button>
+			<button class="btn btn-primary" type="delete">DELETE</button>
 		</div>
 	</div>
 

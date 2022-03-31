@@ -46,13 +46,14 @@ public class Dao {
 		try {
 			Statement stmt = conn.createStatement();
 
-			ResultSet RS = stmt.executeQuery("select * from candidates where candidate_id=1");
+			ResultSet RS = stmt.executeQuery("select * from candidates");
 			while (RS.next()) {
 				Candidate c = new Candidate();
 				c.setId(RS.getInt("candidate_id"));
 				c.setName(RS.getString("lastname"));
 				c.setFname(RS.getString("firstname"));
 				c.setPromo(RS.getString("what_to_promote"));
+				c.setPic(RS.getString("picture"));
 				list.add(c);
 
 			}
@@ -92,5 +93,20 @@ public class Dao {
 		catch(SQLException e) {
 			return null;
 		}
+	}
+	
+	public ArrayList<Candidate> spesificCandidate(String id) {
+		try {
+			String sql="Select * from candidates where candidate_id=?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			
+			
+			stmt.executeQuery();
+			return readAllCand();
+		
+		} catch(SQLException e) {
+			return null;
+		}
+		
 	}
 }
