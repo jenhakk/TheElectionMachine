@@ -6,17 +6,26 @@ public class Candidate {
 	private String fname;
 	private String promo;
 	private String pic;
-	
+	private String party;
+	private String age;
+	private String profession;
+	private String municipality;
 	
 	
 
-	public Candidate(String id, String name, String fname, String pic, String promo) {
+	
+
+	public Candidate(String id, String name, String fname, String pic, String promo, String party, String age, String profession, String municipality) {
 		// TODO Auto-generated constructor stub
 		setId(id);
 		this.name=name;
 		this.fname=fname;
 		this.pic=pic;
 		this.promo=promo;
+		this.age=age;
+		this.party=party;
+		this.profession=profession;
+		this.municipality=municipality;
 	}
 
 	public Candidate() {
@@ -66,6 +75,37 @@ public class Candidate {
 
 	public void setPic(String pic) {
 		this.pic = pic;
+	}
+	public String getParty() {
+		return party;
+	}
+
+	public void setParty(String party) {
+		this.party = party;
+	}
+
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	public String getProfession() {
+		return profession;
+	}
+
+	public void setProfession(String profession) {
+		this.profession = profession;
+	}
+
+	public String getMunicipality() {
+		return municipality;
+	}
+
+	public void setMunicipality(String municipality) {
+		this.municipality = municipality;
 	}
 
 }

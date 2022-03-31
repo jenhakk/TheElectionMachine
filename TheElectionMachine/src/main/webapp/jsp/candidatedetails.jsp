@@ -38,28 +38,25 @@
 						${requestScope.candidate.fname}</h2>
 				</div>
 			</div>
-			<!--  just for testing for now -->
-			<!--  this is just for testing -->
-			<input type='text' name='name' value='${requestScope.candidate.name}'><br>
-			<!--  it doesn't get the information some reason -->
+			
 			<div class="card">
 
 				<div class="row-info">
 					<div class="col-12">
 						<div class="textbox">
 							<p>
-								<span class="party" style="">Minion Party</span>
+								<span class="party" style="">${requestScope.candidate.party}</span>
 							</p>
-							<p class="age">Age: Unknown</p>
-							<p class="city">City: Villain Village</p>
-							<p class="profession">Profession: Minion</p>
+							<p class="age">${requestScope.candidate.age}</p>
+							<p class="city">${requestScope.candidate.municipality}</p>
+							<p class="profession">${requestScope.candidate.profession}</p>
 
 						</div>
 					</div>
 
 					<div class="row-prom">
 						<div class="col-12">
-							<p class="promote">promoting</p>
+							<p class="promote">"${requestScope.candidate.promo}"</p>
 
 						</div>
 
