@@ -47,11 +47,8 @@
 
         <div class="row justify-content-end">
                 
-            <div class="col-3"><a href="" class="btn btn-primary">EDIT</a></div>
-            <div class="col-3"><a href="" class="btn btn-primary">DELETE</a></div>
-            <div class="col-3"><a href="/AnswerQuestionsCandidate" class="btn btn-primary">ANSWER<br>QUESTIONS</a></div>
+            
 
-        </div>
         </div>
 
     </main>
