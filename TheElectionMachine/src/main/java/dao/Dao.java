@@ -84,7 +84,7 @@ public class Dao {
 	
 	public ArrayList<Candidate> deleteCandidate(String id) {
 		try {
-			String sql = "DELETE FROM candidates WHERE id = ?";
+			String sql = "delete from candidates where candidate_id = ?";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setString(1, id);
 			statement.executeUpdate();
