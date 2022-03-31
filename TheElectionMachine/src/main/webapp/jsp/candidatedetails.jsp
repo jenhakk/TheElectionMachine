@@ -47,16 +47,16 @@
 							<p>
 								<span class="party" style="">${requestScope.candidate.party}</span>
 							</p>
-							<p class="age">${requestScope.candidate.age}</p>
-							<p class="city">${requestScope.candidate.municipality}</p>
-							<p class="profession">${requestScope.candidate.profession}</p>
+							<p class="age">Age: ${requestScope.candidate.age}</p>
+							<p class="city">Municipality: ${requestScope.candidate.municipality}</p>
+							<p class="profession">Profession: ${requestScope.candidate.profession}</p>
 
 						</div>
 					</div>
 
 					<div class="row-prom">
 						<div class="col-12">
-							<p class="promote">"${requestScope.candidate.promo}"</p>
+							<p class="promote">What I promote: <br><br>"${requestScope.candidate.promo}"</p>
 
 						</div>
 
