@@ -48,7 +48,9 @@ public class ShowAll extends HttpServlet {
 		request.setAttribute("candilist", list);
 		
 		RequestDispatcher rd=request.getRequestDispatcher("/jsp/browsecandidates.jsp");
+		
 		rd.forward(request, response);
+		
 	}
 
 }
