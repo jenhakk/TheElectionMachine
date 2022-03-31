@@ -143,7 +143,7 @@ public class Dao {
 	public Answers readAns(String id) {
 		Answers a = null;
 		try {
-			String sql = "select * from answers where candidate_id=?";
+			String sql = "select * from candidates inner join answers on candidates.candidate_id=answers.candidate_id inner join questions on answers.question_id=questions.question_id where candidates.candidate_id=?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, id);
 			ResultSet RS = stmt.executeQuery();
@@ -153,8 +153,29 @@ public class Dao {
 				a.setCandi_id(RS.getInt("candidate_id"));
 				a.setQuess_id(RS.getInt("question_id"));
 				a.setAnswer(RS.getInt("answer"));
+				a.setFirstname(RS.getString("firstname"));
+				a.setLastname(RS.getString("lastname"));
+				a.setQuestion(RS.getString("question"));
 			}
 			return a;
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+	public ArrayList<Answers> readAnswers(String id) {
+		ArrayList<Answers> list=new ArrayList<>();
+		try {
+			String sql = "select * from answers where candidates_id=?";
+			PreparedStatement stmt=conn.prepareStatement(sql);
+			stmt.setString(1, id);
+			ResultSet RS = stmt.executeQuery();
+			
+			while (RS.next()) {
+				Answers a=new Answers();
+				a.setCandi_id(RS.getInt("candidate_id"));
+				a.setAnswer(RS.getInt("answer"));
+			}
+			return list;
 		} catch (SQLException e) {
 			return null;
 		}

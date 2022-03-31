@@ -19,7 +19,7 @@
 
     <main class="main_show">
 
-        <h2 class="h2show">Your answers</h2>
+        <h2 class="h2show">${requestScope.answers.lastname} ${requestScope.answers.firstname}s answers</h2>
         <div class="container-fluid" id="showcon"></div>
 
         <table class="table table-bordered" id="tableshow">
@@ -27,21 +27,19 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Question</th>
-                    <th scope="col">Your answer</th>
+                    <th scope="col">Candidates answer</th>
                 </tr>
             </thead>
             <tbody>
+            <!-- have to make list about the candidates answers... and then use forEach -->
+            
                 <tr>
-                    <th scope="row"> 1</th>
-                    <td>Bananas are the greatest fruits.</td>
+                    <th scope="row"></th>
+                    <td></td>
+                    <!-- Need here the answers value, and change it somewhere from number to text -->
                     <td>Strongly agree</td>
                 </tr>
-
-                <tr>
-                    <th scope="row"> 2</th>
-                    <td>Yellow is the best color.</td>
-                    <td>Strongly agree</td>
-                </tr>
+          
             </tbody>
         </table>
 
