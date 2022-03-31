@@ -120,7 +120,10 @@ public class Dao {
 				c.setName(RS.getString("lastname"));
 				c.setFname(RS.getString("firstname"));
 				c.setPic(RS.getString("picture"));
-				c.setPromo(RS.getString("what_to_promote"));					
+				c.setPromo(RS.getString("what_to_promote"));
+				c.setAge(RS.getString("age"));
+				c.setMunicipality(RS.getString("municipality"));
+				c.setParty(RS.getString("party"));
 			}	
 			return c;		
 		}

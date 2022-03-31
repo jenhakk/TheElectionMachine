@@ -31,7 +31,7 @@
 			
 
 			<c:forEach var="cand" items="${requestScope.candilist}">
-			<li>${cand.id }:${cand.fname }<a href='/ShowSpesificCandidate?id=${cand.id}'>PLAAPLAA</a>
+			
 				<!-- -------Candidate element starts---------- -->
 				<div class="card" id="card-cand"><a href="/ShowSpesificCandidate?id=${cand.id}">
 
