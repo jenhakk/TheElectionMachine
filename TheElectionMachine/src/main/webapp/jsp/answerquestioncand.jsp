@@ -55,8 +55,8 @@
 			</div>
 
 			<div class="col-6">
-				<button class="btn btn-primary" id="but-personal">PERSONAL
-					INFORMATION</button>
+				<a href="/profile.html"><div class="btn btn-primary" id="but-personal">PERSONAL
+					INFORMATION</div></a>
 
 			</div>
 		</div>

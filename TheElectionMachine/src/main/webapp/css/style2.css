@@ -106,7 +106,7 @@
 	}
 }
 
-/*************CANDIDATE NUMBER PAGE***************/
+/*************CANDIDATE LOGIN PAGE***************/
 
 /*Header 2 settings*/
 #enter {
@@ -350,7 +350,7 @@ p.candnum {
 	color: white;
 }
 
-/*****************************PROFILE PAGE************************/
+/*****************************CANDIDATE PAGE (FOR VOTERS)************************/
 
 /*Profilepic*/
 .profile_cand {
@@ -406,6 +406,11 @@ p.candnumber {
 	font-size: 20px;
 }
 
+.pin {
+	
+	height: 20;
+	position: relative;
+}
 .party {
 	background-color: #a8bef7;
 	padding: 10px;
@@ -422,7 +427,7 @@ p.candnumber {
 	font-size: 23px;
 }
 
-/*********************CANDITATE PROFILE*****************************/
+/*********************CANDITATE PROFILE (FOR CANDIDATES)*****************************/
 #profile .main_profile {
 	margin-top: 30px;
 	width: 80%;
