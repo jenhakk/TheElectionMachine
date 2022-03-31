@@ -22,7 +22,7 @@ public class Dao {
 		this.pass = pass;
 	}
 
-	// yhteyden luonti tietokantaan
+	// connection to the database
 	public boolean getConnection() {
 		try {
 			if (conn == null || conn.isClosed()) {
@@ -32,6 +32,10 @@ public class Dao {
 					throw new SQLException(e);
 				}
 				conn = DriverManager.getConnection(url, user, pass);
+
+				if (conn != null) {
+					System.out.println("Database connection ok.");
+				}
 			}
 			return true;
 		} catch (SQLException e) {
@@ -40,7 +44,8 @@ public class Dao {
 		}
 	}
 
-	// ehdokkaiden tietojen lukeminen tietokannasta
+	// This method reads information of all the candidates from the database to a
+	// list
 	public ArrayList<Candidate> readAllCand() {
 		ArrayList<Candidate> list = new ArrayList<>();
 		try {
@@ -63,11 +68,13 @@ public class Dao {
 		}
 	}
 
+	// this daomethod can be used to read the questions from database to a list, it
+	// gets the questions number and the question.
 	public ArrayList<Questions> readAllQuestions() {
 		ArrayList<Questions> list = new ArrayList<>();
 		try {
 			Statement stmt = conn.createStatement();
-			
+
 			ResultSet RS = stmt.executeQuery("select * from questions");
 			while (RS.next()) {
 				Questions q = new Questions();
@@ -81,7 +88,7 @@ public class Dao {
 			return null;
 		}
 	}
-	
+
 	public ArrayList<Candidate> deleteCandidate(String id) {
 		try {
 			String sql = "delete from candidates where candidate_id = ?";
@@ -89,24 +96,36 @@ public class Dao {
 			statement.setString(1, id);
 			statement.executeUpdate();
 			return readAllCand();
-		}
-		catch(SQLException e) {
+		} catch (SQLException e) {
 			return null;
 		}
 	}
-	
-	public ArrayList<Candidate> spesificCandidate(String id) {
+
+	public Candidate readCandi(String id) {
+		Candidate c = null;	
 		try {
-			String sql="Select * from candidates where candidate_id=?";
+			// sql-command
+			String sql = "select * from candidates where candidate_id=?";
+			// set command to preparedstatement
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			
-			
-			stmt.executeQuery();
-			return readAllCand();
-		
-		} catch(SQLException e) {
+			// set id to to stmt
+			stmt.setString(1, id);
+			// suorittaa käskyn
+			ResultSet RS = stmt.executeQuery();
+
+			while (RS.next()) {
+				// new candidate candi,
+				c = new Candidate();
+				c.setId(RS.getInt("candidate_id"));
+				c.setName(RS.getString("lastname"));
+				c.setFname(RS.getString("firstname"));
+				c.setPic(RS.getString("picture"));
+				c.setPromo(RS.getString("what_to_promote"));					
+			}	
+			return c;		
+		}
+		catch (SQLException e) {
 			return null;
 		}
-		
 	}
 }

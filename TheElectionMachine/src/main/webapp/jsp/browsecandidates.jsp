@@ -28,11 +28,12 @@
 
 		<div class="container-fluid">
 
-
+			
 
 			<c:forEach var="cand" items="${requestScope.candilist}">
+			<li>${cand.id }:${cand.fname }<a href='/ShowSpesificCandidate?id=${cand.id}'>PLAAPLAA</a>
 				<!-- -------Candidate element starts---------- -->
-				<div class="card" id="card-cand"><a href="/candidatedetails.jsp?candidate_id=${cand.id}">
+				<div class="card" id="card-cand"><a href="/ShowSpesificCandidate?id=${cand.id}">
 
 					<div class="row no-gutters">
 						<div class="col-4">

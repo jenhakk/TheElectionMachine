@@ -8,13 +8,15 @@ public class Candidate {
 	private String pic;
 	
 	
+	
 
-	public Candidate(String id, String name, String fname, String pic) {
+	public Candidate(String id, String name, String fname, String pic, String promo) {
 		// TODO Auto-generated constructor stub
 		setId(id);
 		this.name=name;
 		this.fname=fname;
 		this.pic=pic;
+		this.promo=promo;
 	}
 
 	public Candidate() {
