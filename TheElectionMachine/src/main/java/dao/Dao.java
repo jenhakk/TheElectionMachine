@@ -124,6 +124,7 @@ public class Dao {
 				c.setAge(RS.getString("age"));
 				c.setMunicipality(RS.getString("municipality"));
 				c.setParty(RS.getString("party"));
+				c.setProfession(RS.getString("profession"));
 			}	
 			return c;		
 		}
