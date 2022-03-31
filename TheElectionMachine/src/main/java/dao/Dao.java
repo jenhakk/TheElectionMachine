@@ -44,8 +44,10 @@ public class Dao {
 		}
 	}
 
-	// This method reads information of all the candidates from the database to a
-	// list
+	// This method reads information of all the candidates from the database to an
+	// ArrayList. First creates a new ArrayList, then connects to a database. After executing the
+	// given statement, creates a new object Candidate and then adds this object to an ArrayList named list.
+	// -Ansku
 	public ArrayList<Candidate> readAllCand() {
 		ArrayList<Candidate> list = new ArrayList<>();
 		try {
@@ -68,8 +70,8 @@ public class Dao {
 		}
 	}
 
-	// this daomethod can be used to read the questions from database to a list, it
-	// gets the questions number and the question.
+	// this method can be used to read the questions from database to a list, it
+	// gets the questions number and the question. -Ansku
 	public ArrayList<Questions> readAllQuestions() {
 		ArrayList<Questions> list = new ArrayList<>();
 		try {
@@ -100,7 +102,9 @@ public class Dao {
 			return null;
 		}
 	}
-
+	// this method can be used to read selected candidates info from database. It gets the candidates id as a parameter
+	// and uses prepared statement to put this parameters String-data to the sql-sentence. Then it creates a new object Candidate c
+	// and reads information for this object from a database. -Ansku
 	public Candidate readCandi(String id) {
 		Candidate c = null;	
 		try {
