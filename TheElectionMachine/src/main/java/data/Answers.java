@@ -4,8 +4,29 @@ public class Answers {
 	private int quess_id;
 	private int candi_id;
 	private int answer;
+	private String question;
+	private String lastname;
+	private String firstname;
 	
 	
+	public String getQuestion() {
+		return question;
+	}
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+	public String getLastname() {
+		return lastname;
+	}
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+	public String getFirstname() {
+		return firstname;
+	}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
 	public int getQuess_id() {
 		return quess_id;
 	}
@@ -34,7 +55,7 @@ public class Answers {
 		}
 	}
 	
-	public void setAnswers(String answer) {
+	public void setAnswer(String answer) {
 		try {
 			this.answer = Integer.parseInt(answer);
 		}
