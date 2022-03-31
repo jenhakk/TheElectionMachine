@@ -1,8 +1,6 @@
 package app;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,18 +40,17 @@ public class ShowSpesificCandidate extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		// if I understand right, this gets the parametre "id" from the
-		// browsecandidates.jsp-file
+		// This String id gets the parameter "id" from the browsecandidates.jsp-file
 		String id = request.getParameter("id");
-		// Object candidate for empty
+		// Object candidate is first empty
 		Candidate candi = null;
-		// if we get connection, then readCandi-method, set id for a parametre to get
+		// if we get connection, then calls readCandi-method, set id for a parameter to get
 		// this candidates info
 		if (dao.getConnection()) {
 			// send id number to readCandi-method
 			candi = dao.readCandi(id);
 		}
-		// set candi to an attribute
+		// set this "candi" object to an attribute
 		request.setAttribute("candidate", candi);
 		// send it to candidatedetails.jsp
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/candidatedetails.jsp");

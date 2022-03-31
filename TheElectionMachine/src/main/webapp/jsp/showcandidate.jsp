@@ -20,6 +20,7 @@
 		<h2 class="head">Election machine</h2>
 		<table>
 			<tr>
+			    <!-- this is only a test file for practicing -->
 				<th>Voting number</th>
 				<th>Last name</th>
 				<th>First name</th>
