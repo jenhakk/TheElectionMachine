@@ -35,7 +35,7 @@
 							<label for="candi">Candidate</label>
 						</div>
 						<div class="col">
-							<input type="text" id="name" name="name" disabled="disabled">
+							<input type="text" id="name" name="name" value="${answers.get(0).getLastname()} ${answers.get(0).getFirstname()}" disabled="disabled">
 						</div>
 					</div>
 
@@ -44,8 +44,7 @@
 							<label for="candi_id">Number</label>
 						</div>
 						<div class="col">
-							<input type="text" id="candi_id" name="candi_id"
-								disabled="disabled">
+							<input type="text" id="candi_id" name="candi_id" value="${answers.get(0).getCandi_id()}" disabled="disabled">
 						</div>
 
 					</div>
@@ -68,30 +67,30 @@
 
 
 		<!-- Question element starts -->
-		<c:forEach var="ques" items="${requestScope.questions}">
+		<c:forEach var="ques" items="${requestScope.answers}">
 		
-		<p class="question"><c:out value="${ques.id}"/>. <c:out value="${ques.question}" /></p>
+		<p class="question"><c:out value="${ques.quess_id}"/>. <c:out value="${ques.question}" /></p>
 		
 		<div class="card" id="ques-card">
 			<div>
-				<input type="radio" id="strdis" name="<c:out value="${ques.id}"/>"
+				<input type="radio" id="strdis" name="<c:out value="${ques.quess_id}"/>"
 					value="1"> <label for="strdis">Strongly disagree</label>
 
 			</div>
 			<div>
-				<input type="radio" id="dis" name="<c:out value="${ques.id}"/>"
+				<input type="radio" id="dis" name="<c:out value="${ques.quess_id}"/>"
 					value="2"> <label for="dis">Disagree</label>
 			</div>
 			<div>
-				<input type="radio" id="ntrl" name="<c:out value="${ques.id}"/>"
+				<input type="radio" id="ntrl" name="<c:out value="${ques.quess_id}"/>"
 					value="3" checked> <label for="ntrl">Neutral</label>
 			</div>
 			<div>
-				<input type="radio" id="agr" name="<c:out value="${ques.id}"/>"
+				<input type="radio" id="agr" name="<c:out value="${ques.quess_id}"/>"
 					value="4"> <label for="agr">Agree</label>
 			</div>
 			<div>
-				<input type="radio" id="stragr" name="<c:out value="${ques.id}"/>"
+				<input type="radio" id="stragr" name="<c:out value="${ques.quess_id}"/>"
 					value="5"> <label for="stragr">Strongly agree</label>
 			</div>
 
