@@ -8,26 +8,30 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style2.css">
-    <title>Election machine</title>
+    <title>Candidate login</title>
 </head>
 
-<body id="home">
-    <main class="main_home">
+<body id="candnum"
+    style="background-image: url('/pics/minioncandidate.png'); background-repeat: no-repeat;background-position: right 200px bottom 100px;background-size: 25vw;">
 
-        <div class="container-fluid">
-            <h1>Election machine</h1>
-            <h2>Choose your option</h2>
+    <main>
+        <div class="container">
+            <h2 id="enter">Enter your candidate number:</h2>
 
-            <div class="row1 justify-content-center">
+            <div class="row2">
+                <div class="col">
+                <form action="/CandidateLogin" method="post">
+                <input type="text" id="candid" name="candid" value="">
 
-                <div class="col-3"><a href='/ShowAll' class="btnindex">BROWSE<br>CANDIDATES</a></div>
+                </div>
 
-                <div class="col-3"><a href='/AnswerQuestionsCandidate' class="btnindex">ANSWER<br>QUESTIONS</a></div>
+                <div class="col">
+                 <input type="submit" name="ok" class="btn btn-primary" value="SUBMIT">
+                </div>
+                </form>
 
             </div>
-            <div class="row1 justify-content-around">
-                <div class="col-4"><a href="/jsp/candidatelogin.jsp" class="btnindex2">ARE YOU A CANDIDATE?</a></div>
-            </div>
+
         </div>
     </main>
 

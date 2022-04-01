@@ -1,6 +1,7 @@
 package app;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -43,17 +44,17 @@ public class ShowAnswersToUser extends HttpServlet {
 
 		// This String id gets the parameter "id" from the .jsp-file
 		String id = request.getParameter("id");
-		// Object ans is first empty
-		Answers ans = null;
+		//ArrayList about values we will get
+		ArrayList<Answers> list = null;
 		// if we get connection, then calls readCandi-method, set id for a parameter to
 		// get
 		// this candidates info
 		if (dao.getConnection()) {
 			// send id number to readCandi-method
-			ans = dao.readAns(id);
+			list = dao.readAnsw(id);
 		}
-		// set this "candi" object to an attribute
-		request.setAttribute("answers", ans);
+		// set this list of objects to an attribute
+		request.setAttribute("answers", list);
 		// send it to candidatedetails.jsp
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/showanswerstouser.jsp");
 		rd.forward(request, response);

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="data.Answers"%>
+<%@ page import="dao.Dao" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -16,12 +18,15 @@
 </head>
 
 <body id="showans" style="background-image: url(/pics/minionsvertical.png); background-repeat: no-repeat;background-position: left 50px bottom 50px;background-size: 25vw;">
-
+		
     <main class="main_show">
-
-        <h2 class="h2show">${requestScope.answers.lastname} ${requestScope.answers.firstname}s answers</h2>
-        <div class="container-fluid" id="showcon"></div>
-
+		
+        <h2 class="h2show"> </h2>
+      
+        <!-- Here we get name of the candidate -->
+        <div class="container-fluid" id="showcon">Candidates ${answers.get(0).getFirstname()} ${answers.get(0).getLastname()}s answers:</div>
+ 		
+	
         <table class="table table-bordered" id="tableshow">
             <thead>
                 <tr>
@@ -30,33 +35,31 @@
                     <th scope="col">Candidates answer</th>
                 </tr>
             </thead>
+            
             <tbody>
-            <!-- have to make list about the candidates answers... and then use forEach -->
-            
+            <!-- Go through candidates answers -->
+            <c:forEach var="ques" items="${requestScope.answers}">
                 <tr>
-                    <th scope="row"></th>
-                    <td></td>
-                    <!-- Need here the answers value, and change it somewhere from number to text -->
-                    <td>Strongly agree</td>
+                    <th scope="row"><c:out value="${ques.quess_id}" /></th>
+                    <td><c:out value="${ques.question}" /></td>
+                    <!-- Here we get values of candidates answers from database and change them to text outputs -->                    
+                	<td><c:choose><c:when test="${ques.answer==1}">Strongly disagree</c:when> 
+                    <c:when test="${ques.answer==2 }">Disagree</c:when>
+                    <c:when test="${ques.answer==3 }">Neutral</c:when>
+                    <c:when test="${ques.answer==4 }">Agree</c:when>
+                    <c:when test="${ques.answer==5 }">Strongly agree</c:when>
+                    <c:otherwise>No opinion yet</c:otherwise>
+                    </c:choose></td>
                 </tr>
-          
-            </tbody>
+          	</c:forEach>
+            </tbody>          
         </table>
-
-        <div class="row justify-content-end">
-                
-            
-
+        <div class="row justify-content-end">                
         </div>
 
     </main>
-
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
 </body>
-
 </html>
