@@ -29,10 +29,14 @@
 		<div class="container-fluid">
 
 			
-
+			<!-- This forEach gets info from ShowAll.java-file, makes a loop to go through every candidate -->
 			<c:forEach var="cand" items="${requestScope.candilist}">
 			
 				<!-- -------Candidate element starts---------- -->
+				<!-- This div class is a link, it leads user to see more details about selected candidate. ${cand.id} goes with
+				     the link, because it is needed when in ShowSpesificCandidate-servlet we find details of this particular candidate.
+				     So we send the id within this link, so we can request it in the servlet. This servlet leads us to the next page, named
+				     candidatedetails.jsp -->
 				<div class="card" id="card-cand"><a href="/ShowSpesificCandidate?id=${cand.id}">
 
 					<div class="row no-gutters">

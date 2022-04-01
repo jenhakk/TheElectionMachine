@@ -25,7 +25,8 @@
 
 		<div class="container">
 
-
+			<!-- Here we use requestScope to get info from the ShowSpesificCandidate-servlet. There we have made a request and set attributes "candidate" and object candi
+			     in it. Now we can use this objects details here in this .jsp-file. -->
 			<div class="rowcan1">
 				<div class="col">
 					<img class="profile_cand" name="pic"
@@ -68,7 +69,8 @@
 
 			<!-- Not sure if we want to have this, can be deleted later -->
 			<div class="col">
-				<a href="/showanswers.html" class="btn btn-primary">CHECK
+			<!-- link to next servlet, which get candidates answers from a database -->
+				<a href="/ShowAnswersToUser?id=${candidate.id}" class="btn btn-primary">CHECK
 					CANDIDATES ANSWERS</a>
 			</div>
 
@@ -79,8 +81,7 @@
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-		crossorigin="anonymous">
-		
+		crossorigin="anonymous">		
 	</script>
 </body>
 
