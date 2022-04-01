@@ -139,7 +139,7 @@ public class Dao {
 			return null;
 		}
 	}
-
+	//this is maybe unnecessary, I made this for testing things, but I'll not remove this yet - Ansku
 	public Answers readAns(String id) {
 		Answers a = null;
 		try {
@@ -162,18 +162,29 @@ public class Dao {
 			return null;
 		}
 	}
-	public ArrayList<Answers> readAnswers(String id) {
+	// this method can be used to read selected candidates answers + other info from database. It
+	// gets the candidates id as a parameter
+	// and uses prepared statement to put this parameters String-data to the
+	// sql-sentence. Then it creates a new object Candidate c
+	// and reads information for this object from a database. Then it adds this object to a list and returns it -Ansku
+	public ArrayList<Answers> readAnsw(String id) {
+		Answers a = null;
 		ArrayList<Answers> list=new ArrayList<>();
 		try {
-			String sql = "select * from answers where candidates_id=?";
-			PreparedStatement stmt=conn.prepareStatement(sql);
+			String sql = "select * from candidates inner join answers on candidates.candidate_id=answers.candidate_id inner join questions on answers.question_id=questions.question_id where candidates.candidate_id=?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, id);
 			ResultSet RS = stmt.executeQuery();
 			
 			while (RS.next()) {
-				Answers a=new Answers();
+				a = new Answers();
 				a.setCandi_id(RS.getInt("candidate_id"));
-				a.setAnswer(RS.getInt("answer"));
+				a.setQuess_id(RS.getInt("question_id"));
+				a.setAnswer(RS.getInt("answer"));				
+				a.setFirstname(RS.getString("firstname"));
+				a.setLastname(RS.getString("lastname"));
+				a.setQuestion(RS.getString("question"));
+				list.add(a);
 			}
 			return list;
 		} catch (SQLException e) {
