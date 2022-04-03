@@ -158,6 +158,12 @@ public class Dao {
 				a.setFirstname(RS.getString("firstname"));
 				a.setLastname(RS.getString("lastname"));
 				a.setQuestion(RS.getString("question"));
+				a.setAge(RS.getString("age"));
+				a.setPromo(RS.getString("what_to_promote"));
+				a.setParty(RS.getString("party"));
+				a.setPic(RS.getString("picture"));
+				a.setProfession(RS.getString("profession"));
+				a.setMunicipality(RS.getString("municipality"));
 			}
 			return a;
 		} catch (SQLException e) {
@@ -194,4 +200,70 @@ public class Dao {
 		}
 	}
 
+	// Method for reading all info from candidate by id (from answerquestioncand.jsp id form)
+	public Candidate readAllInfo(String id) {
+		Candidate cand = null;
+		try {
+			String sql = "select * from candidates where candidate_id=?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, id);
+			
+			ResultSet RS = stmt.executeQuery();
+
+			
+			while (RS.next()) {
+				cand = new Candidate();
+				cand.setId(RS.getInt("candidate_id"));
+				cand.setName(RS.getString("lastname"));
+				cand.setFname(RS.getString("firstname"));
+				cand.setPic(RS.getString("picture"));
+				cand.setParty(RS.getString("party"));
+				cand.setMunicipality(RS.getString("municipality"));
+				cand.setAge(RS.getString("age"));
+				cand.setPromo(RS.getString("what_to_promote"));
+				cand.setProfession(RS.getString("profession"));
+	}
+			return cand;
+		} catch (SQLException e) {
+			return null;
+	}
+
 }
+	//Method to update candidates info from form
+			public Candidate UpdateCandidate(Candidate can) {
+				
+				try {
+					
+					String sql = "update candidates set lastname=?, firstname=?, picture=?, party=?, municipality=?, age=?, what_to_promote=?, profession=? where candidate_id=?";
+					PreparedStatement pstmt = conn.prepareStatement(sql);
+					
+					pstmt.setString(1, can.getName());
+					pstmt.setString(2, can.getFname());
+					pstmt.setNString(3, can.getPic());
+					pstmt.setString(4, can.getParty());
+					pstmt.setString(5, can.getMunicipality());
+					pstmt.setString(6, can.getAge());
+					pstmt.setString(7, can.getPromo());
+					pstmt.setString(8, can.getProfession());
+					pstmt.setInt(9, can.getId());
+					
+					String candID = Integer.toString(can.getId());
+					
+					int rowsUpdated = pstmt.executeUpdate();
+					
+					if (rowsUpdated > 0) {
+						
+						System.out.println("success");
+					} else
+						System.out.println("nope");
+					
+					return readAllInfo(candID);
+					
+				} catch(SQLException e) {
+					
+					System.out.println("Something went wrong");
+				return null;
+			}
+		}	
+	
+	}
