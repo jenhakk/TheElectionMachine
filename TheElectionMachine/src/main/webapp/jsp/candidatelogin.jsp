@@ -21,7 +21,7 @@
             <div class="row2">
                 <div class="col">
                 <form action="/CandidateLogin" method="post">
-                <input type="text" id="candid" name="candid" value="">
+                <input type="text" id="candi_id" name="candi_id" value="">
 
                 </div>
 

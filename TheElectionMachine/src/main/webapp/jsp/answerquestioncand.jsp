@@ -54,7 +54,7 @@
 			</div>
 
 			<div class="col-6">
-				<a href="/profile.html"><div class="btn btn-primary" id="but-personal">PERSONAL
+				<a href="/GetCandId?id=${answers.get(0).getCandi_id()}"><div class="btn btn-primary" id="but-personal">PERSONAL
 					INFORMATION</div></a>
 
 			</div>
