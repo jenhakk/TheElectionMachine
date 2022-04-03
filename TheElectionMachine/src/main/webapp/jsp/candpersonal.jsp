@@ -71,7 +71,7 @@
 				<a href="/CandidateLoginBack?id=${candper.candi_id}" class="btn btn-primary">BACK</a>
 			</div>
 			<div class="col">
-				<a href="/ShowInfo?id=${candper.candi_id}" class="btn btn-primary">EDIT</a>
+				<a href="/ShowInfoForm?id=${candper.candi_id}" class="btn btn-primary">EDIT</a>
 			</div>
 
 		</div>
