@@ -7,8 +7,50 @@ public class Answers {
 	private String question;
 	private String lastname;
 	private String firstname;
+	private String promo;
+	private String pic;
+	private String party;
+	private String age;
+	private String profession;
+	private String municipality;
 	
 	
+	public String getPromo() {
+		return promo;
+	}
+	public void setPromo(String promo) {
+		this.promo = promo;
+	}
+	public String getPic() {
+		return pic;
+	}
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
+	public String getParty() {
+		return party;
+	}
+	public void setParty(String party) {
+		this.party = party;
+	}
+	public String getAge() {
+		return age;
+	}
+	public void setAge(String age) {
+		this.age = age;
+	}
+	public String getProfession() {
+		return profession;
+	}
+	public void setProfession(String profession) {
+		this.profession = profession;
+	}
+	public String getMunicipality() {
+		return municipality;
+	}
+	public void setMunicipality(String municipality) {
+		this.municipality = municipality;
+	}
 	public String getQuestion() {
 		return question;
 	}

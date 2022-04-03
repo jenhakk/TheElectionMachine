@@ -12,13 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
 import data.Answers;
-import data.Candidate;
 
 /**
- * Servlet implementation class CandiateLogin
+ * Servlet implementation class CandidateLoginBack
  */
-@WebServlet("/CandidateLogin")
-public class CandidateLogin extends HttpServlet {
+@WebServlet("/CandidateLoginBack")
+public class CandidateLoginBack extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Dao dao;
 	
@@ -26,16 +25,19 @@ public class CandidateLogin extends HttpServlet {
 		dao = new Dao("jdbc:mysql://localhost:3306/minion", "admin", "password");
 	}
        
-    public CandidateLogin() {
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public CandidateLoginBack() {
         super();
+        // TODO Auto-generated constructor stub
     }
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
-    	doPost(request, response);
-    }
-    
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("candi_id");
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String id = request.getParameter("id");
 		
 		ArrayList<Answers> list = null;
 		
@@ -48,5 +50,7 @@ public class CandidateLogin extends HttpServlet {
 
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/answerquestioncand.jsp");
 		rd.forward(request, response);
-		}
+	}
+
+	
 }
