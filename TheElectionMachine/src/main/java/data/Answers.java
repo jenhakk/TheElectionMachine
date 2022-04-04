@@ -14,10 +14,6 @@ public class Answers {
 	private String profession;
 	private String municipality;
 	
-	public Answers() {
-	//constructor	
-	}
-	
 	
 	public Answers(int idst, String name, String fname, String promo, String pic, String age, String municipality,
 			String party, String profession) {
