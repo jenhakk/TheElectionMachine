@@ -15,7 +15,6 @@ public class Answers {
 	private String municipality;
 	
 	
-	
 	public Answers(int idst, String name, String fname, String promo, String pic, String age, String municipality,
 			String party, String profession) {
 		this.candi_id=idst;
