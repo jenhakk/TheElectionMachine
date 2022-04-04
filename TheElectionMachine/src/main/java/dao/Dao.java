@@ -92,8 +92,7 @@ public class Dao {
 		}
 	}
 	
-	// a method, which gets String 'id' as a parameter and the method executes delete query based on given id 
-	// returns readAllCand()
+	
 	public ArrayList<Candidate> deleteCandidate(String id) {
 		try {
 			String sql = "delete from candidates where candidate_id = ?";
