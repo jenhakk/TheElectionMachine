@@ -92,8 +92,9 @@
             </form>
                 </div>
         </div>
-				<div class="col-12"><a href="/showanswers.html" class="btnindex">CHECK YOUR ANSWERS</a></div>
-				
+        <!-- Ansku TÄMÄTÄMÄTÄMÄ -->
+				<div class="col-12"><a href="/ShowAnswersToCandidate?id=${candform.candi_id}" class="btnindex">CHECK YOUR ANSWERS</a></div>
+		<!-- 4.4 10.38 -->		
 			
 				</div>
         </div>      
