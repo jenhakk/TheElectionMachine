@@ -65,10 +65,10 @@
 
 
 
-
+	
 		<!-- Question element starts -->
 		<c:forEach var="ques" items="${requestScope.answers}">
-		
+		<form action="SaveValueButtons" method="POST" class="forminfo">
 		<p class="question"><c:out value="${ques.quess_id}"/>. <c:out value="${ques.question}" /></p>
 		
 		<div class="card" id="ques-card">
@@ -96,9 +96,10 @@
 
 		</div>
 		<br>
+		</form>
 		</c:forEach>
 		<!-- Question element ends -->
-
+		
 
 		<div class="row justify-content-end">
 			<button class="btn btn-primary" id="submit-que" type="submit">SUBMIT</button>
