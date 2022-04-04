@@ -14,6 +14,9 @@ public class Answers {
 	private String profession;
 	private String municipality;
 	
+	public Answers() {
+	//constructor	
+	}
 	
 	public String getPromo() {
 		return promo;

@@ -4,6 +4,11 @@ public class Questions {
 	private int id;
 	private String question;
 
+	
+	public Questions() {
+	//constructor	
+	}
+	
 	public int getId() {
 		return id;
 	}
