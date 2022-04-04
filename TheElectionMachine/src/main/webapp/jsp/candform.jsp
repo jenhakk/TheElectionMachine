@@ -42,7 +42,7 @@
                 
                 <div class="form-group">
              
-                    <input type="hidden" class="infoper" id="id" name="pic" value="${requestScope.candform.pic}">
+                    <input type="hidden" class="infoper" id="pic" name="pic" value="${requestScope.candform.pic}">
                 </div>
                 <div class="form-group">
                     <label for="id" id="label">Number</label><br>
@@ -84,7 +84,7 @@
                     <textarea type="text" class="infoperarea" id="promo" name="promo" required>${requestScope.candform.promo}</textarea>
                 </div class="row">
               	<div class="col">
-				<a href="/ShowCandInfo?id=${candinfo.id}" class="btn btn-primary">BACK</a>
+				<a href="/GetCandId?id=${candform.candi_id}" class="btn btn-primary">BACK</a>
 			</div>
 			<div class="col">
 				<input type="submit" class="btn btn-primary" name="ok" value="SAVE">
@@ -92,8 +92,9 @@
             </form>
                 </div>
         </div>
-				<div class="col-12"><a href="/showanswers.html" class="btnindex">CHECK YOUR ANSWERS</a></div>
-				
+        <!-- Ansku TÄMÄTÄMÄTÄMÄ -->
+				<div class="col-12"><a href="/ShowAnswersToCandidate?id=${candform.candi_id}" class="btnindex">CHECK YOUR ANSWERS</a></div>
+		<!-- 4.4 10.38 -->		
 			
 				</div>
         </div>      

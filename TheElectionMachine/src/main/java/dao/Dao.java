@@ -230,24 +230,26 @@ public class Dao {
 
 }
 	//Method to update candidates info from form
-			public Candidate UpdateCandidate(Candidate can) {
+			public Answers UpdateCandidate(Answers can) {
 				
 				try {
 					
 					String sql = "update candidates set lastname=?, firstname=?, picture=?, party=?, municipality=?, age=?, what_to_promote=?, profession=? where candidate_id=?";
 					PreparedStatement pstmt = conn.prepareStatement(sql);
 					
-					pstmt.setString(1, can.getName());
-					pstmt.setString(2, can.getFname());
-					pstmt.setNString(3, can.getPic());
+					pstmt.setString(1, can.getLastname());
+					pstmt.setString(2, can.getFirstname());
+					pstmt.setString(3, can.getPic());
 					pstmt.setString(4, can.getParty());
 					pstmt.setString(5, can.getMunicipality());
 					pstmt.setString(6, can.getAge());
 					pstmt.setString(7, can.getPromo());
 					pstmt.setString(8, can.getProfession());
-					pstmt.setInt(9, can.getId());
+					pstmt.setInt(9, can.getCandi_id());
 					
-					String candID = Integer.toString(can.getId());
+					String candID = Integer.toString(can.getCandi_id());
+					System.out.println("daossa" + candID + can.getAge() + can.getFirstname() + can.getLastname() + can.getMunicipality() + can.getParty() + can.getProfession() + can.getPromo() + can.getPic() + can.getCandi_id());
+					
 					
 					int rowsUpdated = pstmt.executeUpdate();
 					
@@ -257,7 +259,7 @@ public class Dao {
 					} else
 						System.out.println("nope");
 					
-					return readAllInfo(candID);
+					return readAns(candID);
 					
 				} catch(SQLException e) {
 					

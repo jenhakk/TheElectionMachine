@@ -15,6 +15,21 @@ public class Answers {
 	private String municipality;
 	
 	
+	public Answers(int idst, String name, String fname, String promo, String pic, String age, String municipality,
+			String party, String profession) {
+		this.candi_id=idst;
+		this.lastname=name;
+		this.firstname=fname;
+		this.promo=promo;
+		this.pic=pic;
+		this.party=party;
+		this.age=age;
+		this.profession=profession;
+		this.municipality=municipality;
+	}
+	public Answers() {
+		// TODO Auto-generated constructor stub
+	}
 	public String getPromo() {
 		return promo;
 	}
