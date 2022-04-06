@@ -264,15 +264,11 @@ public class Dao {
 			if (rowsUpdated > 0) {
 
 				System.out.println("success");
-<<<<<<< Updated upstream
+
 			} else {
 				System.out.println("nope");
 			}
-=======
-			} else
-				System.out.println("nope");
 
->>>>>>> Stashed changes
 			return readAns(candID);
 
 		} catch (SQLException e) {
@@ -282,37 +278,24 @@ public class Dao {
 		}
 	}
 
-<<<<<<< Updated upstream
 	public Answers updateAnswers(Answers a) {
 
 		System.out.println("ollaanko täällä?");
 		try {
-			
+
 			System.out.println("try");
 			String sql = "update answers set answer=? where candidate_id=? and question_id=?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, a.getAnswer());
 			pstmt.setInt(3, a.getQuess_id());
 			pstmt.setInt(2, a.getCandi_id());
-=======
-	public Answers SaveAnswers(Answers ans) {
-
-		try {
-
-			String sql = "update answers set question_id=?, answer=? where candidate_id=?";
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-
-			pstmt.setInt(1, ans.getQuess_id());
-			pstmt.setInt(2, ans.getAnswer());
-			pstmt.setInt(3, ans.getCandi_id());
->>>>>>> Stashed changes
 
 			int rowsUpdated = pstmt.executeUpdate();
 
 			if (rowsUpdated > 0) {
 
 				System.out.println("success");
-<<<<<<< Updated upstream
+
 			} else {
 				System.out.println("nope");
 			}
@@ -327,18 +310,4 @@ public class Dao {
 		}
 	}
 
-=======
-			} else
-				System.out.println("nope");
-
-			return null;
-
-		} catch (SQLException e) {
-
-			System.out.println("Something went wrong");
-			return null;
-		}
-
-	}
->>>>>>> Stashed changes
 }
