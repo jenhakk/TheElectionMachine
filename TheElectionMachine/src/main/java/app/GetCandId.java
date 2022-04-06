@@ -46,12 +46,12 @@ public class GetCandId extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String id = request.getParameter("id");
-		System.out.println(id);
+		
 		Answers caninfo = null;
 		if (dao.getConnection()) {
 			caninfo = dao.readAns(id);
 		}
-		System.out.println(caninfo);
+		
 		request.setAttribute("candper", caninfo);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/candpersonal.jsp");

@@ -24,6 +24,8 @@
 <body id="browse">
 
 	<main class="main_browse">
+	
+	<div class="col"><a href="/index.html" class="btnhome">HOME</a></div>
 		<h1>Candidates</h1>
 
 		<div class="container-fluid">
