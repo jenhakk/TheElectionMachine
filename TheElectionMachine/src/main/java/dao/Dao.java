@@ -121,7 +121,7 @@ public class Dao {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			// set id to to stmt
 			stmt.setString(1, id);
-			// suorittaa käskyn
+			// suorittaa kï¿½skyn
 			ResultSet RS = stmt.executeQuery();
 
 			while (RS.next()) {
@@ -278,9 +278,10 @@ public class Dao {
 		}
 	}
 
+
 	public Answers updateAnswers(Answers a) {
 
-		System.out.println("ollaanko täällä?");
+		System.out.println("ollaanko tï¿½ï¿½llï¿½?");
 		try {
 
 			System.out.println("try");

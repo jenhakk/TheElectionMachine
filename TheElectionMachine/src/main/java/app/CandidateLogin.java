@@ -49,6 +49,15 @@ public class CandidateLogin extends HttpServlet {
 		if (dao.getConnection()) {
 			list = dao.readAnsw(id);
 
+			listq = dao.readAllQuestions();
+			can = dao.readCandi(id);
+			
+			}
+		//System.out.println(list);
+		System.out.println("listQ" + listq);
+
+
+
 			request.setAttribute("candi", can);
 			request.setAttribute("answers", list);
 			request.setAttribute("oikea", listq);

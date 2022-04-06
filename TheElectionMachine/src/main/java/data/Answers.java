@@ -37,13 +37,14 @@ public class Answers {
 	}
 	
 
+
 	public Answers (String candi_id, String quess_id, String answer) {
 		setCandi_id(candi_id);
 		setQuess_id(quess_id);
 		setAnswer(answer);
 		}
 
-	
+
 	public Answers(int idst, String name, String fname, String promo, String pic, String age, String municipality,
 			String party, String profession) {
 		this.candi_id=idst;

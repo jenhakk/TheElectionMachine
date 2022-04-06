@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList"%>
+
+
+<%@ page import= "java.util.ArrayList" %>
+
 <%@ page import="data.Answers"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -31,7 +34,6 @@
 			<div class="col-6">
 
 				<form action="/GetCandId" method="post" class="candform">
-
 
 					<div class="row" style="margin-bottom: 5px;">
 						<div class="col">
@@ -70,28 +72,24 @@
 
 		<h2 class="answer">Answer questions and submit</h2>
 
-		
-		<% 
+			<% 
 			ArrayList<Answers> answers = (ArrayList<Answers>)request.getAttribute("answers");
 		
 			for (int i = 1; i < 11; i++)
 		
 			{
 			%>
-	
-	
+			
+
 		<!-- Question element starts -->
 		<form action="/SaveValueButtons" method="POST" class="forminfo">
 		
 			<div>
-			<input type="hidden" name="candidate" value="${candi.id}">
-		
+
+				<input type="hidden" id="ques" name="quesid" value="<%=i%>"/>
+
 			</div>
 
-			<div>
-			<input type="hidden" id="ques" name="quesid" value="<%=i%>"/>
-			</div>
-			
 				
 				<p class="question"><%=i%>. ${oikea.get(0).getQuestion()}</p>
 
@@ -132,21 +130,19 @@
 									
 		 		%>
 
-			<button class="btn btn-primary" type="submit">SUBMIT</button>
+		
+		<div class="row justify-content-end">	<button class="btn btn-primary" id="submit-que" type="submit">SUBMIT</button></div>
 		</form>
-
-
-		<!-- Question element ends -->
-
-
-		<div class="row justify-content-end">
+			
+				<a href="/GetCandId?id=${candform.candi_id}" class="btn btn-primary">BACK</a>
 			 
-	
 
+			<button class="btn btn-primary" type="delete">DELETE</button>
+			
 			
 		</div>
-		
-	</div>
+
+
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

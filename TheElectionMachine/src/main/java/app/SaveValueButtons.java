@@ -1,5 +1,4 @@
 package app;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -9,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import dao.Dao;
 import data.Answers;
 
@@ -23,8 +21,9 @@ public class SaveValueButtons extends HttpServlet {
 
 	public void init() {
 		dao = new Dao("jdbc:mysql://localhost:3306/minion", "admin", "password");
-	}
 
+
+	}
 	public SaveValueButtons() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -39,7 +38,7 @@ public class SaveValueButtons extends HttpServlet {
 
 		Answers list = null;
 
-		// haetaan candidaatin id ja kysymysid answerquestionscand.jsp:ltä ja muutetaan
+		// haetaan candidaatin id ja kysymysid answerquestionscand.jsp:ltï¿½ ja muutetaan
 		// inteiksi
 		int cid = Integer.parseInt(request.getParameter("candidate"));
 		int qid = Integer.parseInt(request.getParameter("quesid"));
@@ -58,7 +57,7 @@ public class SaveValueButtons extends HttpServlet {
 				System.out.println("eka" + cid + "toka" + qid + "kolmas" + answer + "answer" + a.getAnswer() + "ques"
 						+ a.getQuess_id());
 
-				// viedään UpdateAnswers-metodille
+				// viedï¿½ï¿½n UpdateAnswers-metodille
 				list = dao.updateAnswers(a);
 
 				// kasvatetaan kysymyksen numeroa ja aloitetaan uudestaan
@@ -75,5 +74,6 @@ public class SaveValueButtons extends HttpServlet {
 		rd.forward(request, response);
 
 	}
+	
 
 }
