@@ -44,7 +44,6 @@ public class CandidateLoginBack extends HttpServlet {
 		if (dao.getConnection()) {
 			list = dao.readAnsw(id);
 		}
-		System.out.println(list);
 		
 		request.setAttribute("answers", list);
 

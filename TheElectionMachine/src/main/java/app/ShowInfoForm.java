@@ -43,7 +43,7 @@ public class ShowInfoForm extends HttpServlet {
 		if (dao.getConnection()) {
 			caninfo = dao.readAns(id);
 		}
-		System.out.println(caninfo);
+		
 		request.setAttribute("candform", caninfo);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/candform.jsp");

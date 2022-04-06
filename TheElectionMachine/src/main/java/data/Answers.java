@@ -36,11 +36,20 @@ public class Answers {
 		this.answer = answer; 
 	}
 	
+<<<<<<< Updated upstream
 	public Answers (String candi_id, String quess_id, String answer) {
 		setCandi_id(candi_id);
 		setQuess_id(quess_id);
 		setAnswer(answer);
 		}
+=======
+	public Answers(int quess_id, int candi_id, int answer) {
+		
+		this.quess_id = quess_id;
+		this.candi_id = candi_id;
+		this.answer = answer;
+	}
+>>>>>>> Stashed changes
 	
 	public Answers(int idst, String name, String fname, String promo, String pic, String age, String municipality,
 			String party, String profession) {

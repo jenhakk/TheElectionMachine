@@ -2,7 +2,10 @@ package app;
 
 import java.io.IOException;
 import java.util.ArrayList;
+<<<<<<< Updated upstream
 import java.util.List;
+=======
+>>>>>>> Stashed changes
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
 import data.Answers;
+<<<<<<< Updated upstream
 import data.Candidate;
+=======
+>>>>>>> Stashed changes
 
 /**
  * Servlet implementation class SaveValueButtons
@@ -26,11 +32,27 @@ public class SaveValueButtons extends HttpServlet {
 	@Override
 	public void init() {
 		dao = new Dao("jdbc:mysql://localhost:3306/minion", "admin", "password");
+<<<<<<< Updated upstream
+=======
+	}   
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SaveValueButtons() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+>>>>>>> Stashed changes
 	}
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
+<<<<<<< Updated upstream
 	public SaveValueButtons() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -80,6 +102,29 @@ public class SaveValueButtons extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/showanswerstouser.jsp");
 		rd.forward(request, response);
 
+=======
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    
+	    
+		ArrayList<Answers> list = null;
+		String ques = request.getParameter("answer");
+		String can = request.getParameter("var");
+		System.out.println("ques" + ques);
+	
+		System.out.println("can" + can);
+		
+		//int quesint = Integer.parseInt(ques);
+		
+		int canint = Integer.parseInt(can);
+		
+		//Answers answer = new Answers(quesint, canint);		
+		
+		
+		
+			
+	
+		
+>>>>>>> Stashed changes
 	}
 
 }

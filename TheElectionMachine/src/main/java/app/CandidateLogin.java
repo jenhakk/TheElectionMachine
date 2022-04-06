@@ -45,12 +45,17 @@ public class CandidateLogin extends HttpServlet {
 		
 		if (dao.getConnection()) {
 			list = dao.readAnsw(id);
+<<<<<<< Updated upstream
 			listq = dao.readAllQuestions();
 			can = dao.readCandi(id);
 			
 			}
 		//System.out.println(list);
 		System.out.println("listQ" + listq);
+=======
+		}
+		
+>>>>>>> Stashed changes
 		
 		request.setAttribute("candi", can);
 		request.setAttribute("answers", list);
