@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.Dao;
 import data.Answers;
 import data.Candidate;
+import data.Questions;
 
 /**
  * Servlet implementation class CandiateLogin
@@ -38,13 +39,22 @@ public class CandidateLogin extends HttpServlet {
 		String id = request.getParameter("candi_id");
 		
 		ArrayList<Answers> list = null;
+		ArrayList<Questions> listq = null;
+		Candidate can = null;
+		Questions q = null;
 		
 		if (dao.getConnection()) {
 			list = dao.readAnsw(id);
-		}
-		System.out.println(list);
+			listq = dao.readAllQuestions();
+			can = dao.readCandi(id);
+			
+			}
+		//System.out.println(list);
+		System.out.println("listQ" + listq);
 		
+		request.setAttribute("candi", can);
 		request.setAttribute("answers", list);
+		request.setAttribute("oikea", listq);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/answerquestioncand.jsp");
 		rd.forward(request, response);

@@ -49,7 +49,9 @@ public class CandidateLoginBack extends HttpServlet {
 		request.setAttribute("answers", list);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/answerquestioncand.jsp");
+		RequestDispatcher rds = request.getRequestDispatcher("/SaveValueButtons");
 		rd.forward(request, response);
+		rds.forward(request, response);
 	}
 
 	

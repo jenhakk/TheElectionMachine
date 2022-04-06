@@ -1,5 +1,8 @@
 package data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Answers {
 	private int quess_id;
 	private int candi_id;
@@ -13,7 +16,31 @@ public class Answers {
 	private String age;
 	private String profession;
 	private String municipality;
+	private ArrayList<Answers> answers;
 	
+	
+	
+
+	public ArrayList<Answers> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(ArrayList<Answers> answers) {
+		this.answers = answers;
+	}
+
+	public Answers (int candi_id, int quess_id, int answer) {
+		
+		this.candi_id = candi_id;
+		this.quess_id = quess_id;
+		this.answer = answer; 
+	}
+	
+	public Answers (String candi_id, String quess_id, String answer) {
+		setCandi_id(candi_id);
+		setQuess_id(quess_id);
+		setAnswer(answer);
+		}
 	
 	public Answers(int idst, String name, String fname, String promo, String pic, String age, String municipality,
 			String party, String profession) {

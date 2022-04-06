@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="data.Questions"%>
+<%@ page import= "java.util.ArrayList" %>
+<%@ page import="data.Answers"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -23,19 +23,23 @@
 
 <body id="candque">
 
+	
 	<div class="container">
 
+	<div class="col"><a href="index.html" class="btnhome">HOME</a></div>
 		<div class="row" id="row-ansque">
 
 			<div class="col-6">
-				<form action="" method="post" class="candform">
+				<form action="/GetCandId" method="post" class="candform">
 
 					<div class="row" style="margin-bottom: 5px;">
 						<div class="col">
 							<label for="candi">Candidate</label>
 						</div>
 						<div class="col">
-							<input type="text" id="name" name="name" value="${answers.get(0).getLastname()} ${answers.get(0).getFirstname()}" disabled="disabled">
+							<input type="text" id="name" name="name"
+								value="${answers.get(0).getLastname()} ${answers.get(0).getFirstname()}"
+								disabled="disabled">
 						</div>
 					</div>
 
@@ -44,7 +48,8 @@
 							<label for="candi_id">Number</label>
 						</div>
 						<div class="col">
-							<input type="text" id="candi_id" name="candi_id" value="${answers.get(0).getCandi_id()}" disabled="disabled">
+							<input type="text" id="candi_id" name="candi_id"
+								value="${answers.get(0).getCandi_id()}" disabled="disabled">
 						</div>
 
 					</div>
@@ -54,56 +59,91 @@
 			</div>
 
 			<div class="col-6">
-				<a href="/GetCandId?id=${answers.get(0).getCandi_id()}"><div class="btn btn-primary" id="but-personal">PERSONAL
-					INFORMATION</div></a>
+				<a href="/GetCandId?id=${answers.get(0).getCandi_id()}"><div
+						class="btn btn-primary" id="but-personal">PERSONAL
+						INFORMATION</div></a>
 
 			</div>
 		</div>
 
 
 		<h2 class="answer">Answer questions and submit</h2>
-
-
-
-	
+		
+		<% 
+			ArrayList<Answers> answers = (ArrayList<Answers>)request.getAttribute("answers");
+		
+			for (int i = 1; i < 11; i++)
+		
+			{
+			%>
 		<!-- Question element starts -->
-		<c:forEach var="ques" items="${requestScope.answers}">
-		<form action="SaveValueButtons" method="POST" class="forminfo">
-		<p class="question"><c:out value="${ques.quess_id}"/>. <c:out value="${ques.question}" /></p>
+		<form action="/SaveValueButtons" method="POST" class="forminfo">
+			
+			<input type="hidden" name="candidate" value="${candi.id}">
+			
 		
-		<div class="card" id="ques-card">
-			<div>
-				<input type="radio" id="strdis" name="<c:out value="${ques.quess_id}"/>"
-					value="1"> <label for="strdis">Strongly disagree</label>
+			
 
-			</div>
 			<div>
-				<input type="radio" id="dis" name="<c:out value="${ques.quess_id}"/>"
-					value="2"> <label for="dis">Disagree</label>
+				<input type="hidden" id="ques" name="quesid" value="<%=i%>"/>
 			</div>
-			<div>
-				<input type="radio" id="ntrl" name="<c:out value="${ques.quess_id}"/>"
-					value="3" checked> <label for="ntrl">Neutral</label>
-			</div>
-			<div>
-				<input type="radio" id="agr" name="<c:out value="${ques.quess_id}"/>"
-					value="4"> <label for="agr">Agree</label>
-			</div>
-			<div>
-				<input type="radio" id="stragr" name="<c:out value="${ques.quess_id}"/>"
-					value="5"> <label for="stragr">Strongly agree</label>
-			</div>
+				
+				<p class="question"><%=i%>. ${oikea.get(0).getQuestion()}</p>
 
-		</div>
-		<br>
+				<div class="card" id="ques-card">
+				
+					<div>
+						<input type="radio" id="strdis"
+							name="ques<%=i%>" value="1"> 
+							<label for="strdis">Strongly disagree</label>
+
+					</div>
+					<div>
+						<input type="radio" id="dis"
+							name="ques<%=i%>" value="2">
+							<label for="dis">Disagree</label>
+					</div>
+					<div>
+						<input type="radio" id="ntrl"
+							name="ques<%=i%>" value="3" checked> 
+							<label for="ntrl">Neutral</label>
+					</div>
+					<div>
+						<input type="radio" id="agr"
+							name="ques<%=i%>" value="4"> 
+							<label for="agr">Agree</label>
+					</div>
+					<div>
+						<input type="radio" id="stragr"
+							name="ques<%=i%>" value="5"> 
+							<label for="stragr">Strongly agree</label>
+					</div>
+
+				</div>
+				<br>
+
+				<% } 
+									
+		 		%>
+
+			<button class="btn btn-primary" type="submit">SUBMIT</button>
 		</form>
-		</c:forEach>
-		<!-- Question element ends -->
-		
 
-		<div class="row justify-content-end">
-			<button class="btn btn-primary" id="submit-que" type="submit">SUBMIT</button>
+		<!-- Question element ends -->
+
+
+		<div class="row justify-content-center">
+
+
+			<!--<div>
+				<a href="/SaveValueButton?id=${answers.get(0).getQuess_id()}&id2=${answers.get(0).getCandi_id()}">SAVE</a>
+			</div> -->
+			<div class="col">
+				<a href="/GetCandId?id=${candform.candi_id}" class="btn btn-primary">BACK</a>
+			
+			
 			<button class="btn btn-primary" type="delete">DELETE</button>
+		</div>
 		</div>
 	</div>
 

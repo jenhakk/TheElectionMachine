@@ -21,6 +21,7 @@
 <body id="showans" style="background-image: url(/pics/minionsvertical.png); background-repeat: no-repeat;background-position: left 50px bottom 50px;background-size: 25vw;">
 
     <main class="main_show">
+    <div class="col"><a href="/index.html" class="btnhome">HOME</a></div>
 
         <h2 class="h2show">Your answers dear ${answers.get(0).getFirstname()} ${answers.get(0).getLastname()}:</h2>
         <div class="container-fluid" id="showcon"></div>
