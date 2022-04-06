@@ -20,8 +20,11 @@
 </head>
 <body id="candidate">
 	
+	<div class="row">
+	<div class="col" style="position: absolute; left: 0; margin-top:0px; margin-right: 10px;"><a href="/index.html" class="btnhome">HOME</a></div>
+	<div class="col" style="position: absolute; left: 180px"; margin-top:0px;><a href="/ShowAll" class="btn btn-primary">BACK</a></div>
+	</div>
 	<main class="main_candidate">
-
 
 		<div class="container">
 
@@ -69,6 +72,7 @@
 
 			<!-- Not sure if we want to have this, can be deleted later -->
 			<div class="col">
+			
 			<!-- link to next servlet, which get candidates answers from a database -->
 				<a href="/ShowAnswersToUser?id=${candidate.id}" class="btn btn-primary">CHECK
 					CANDIDATES ANSWERS</a>

@@ -91,8 +91,9 @@ public class Dao {
 			return null;
 		}
 	}
-	
-	// a method, which gets String 'id' as a parameter and the method executes delete query based on given id 
+
+	// a method, which gets String 'id' as a parameter and the method executes
+	// delete query based on given id
 	// returns readAllCand()
 	public ArrayList<Candidate> deleteCandidate(String id) {
 		try {
@@ -141,7 +142,9 @@ public class Dao {
 			return null;
 		}
 	}
-	//this is maybe unnecessary, I made this for testing things, but I'll not remove this yet - Ansku
+
+	// this is maybe unnecessary, I made this for testing things, but I'll not
+	// remove this yet - Ansku
 	public Answers readAns(String id) {
 		Answers a = null;
 		try {
@@ -170,25 +173,28 @@ public class Dao {
 			return null;
 		}
 	}
-	// this method can be used to read selected candidates answers + other info from database. It
+
+	// this method can be used to read selected candidates answers + other info from
+	// database. It
 	// gets the candidates id as a parameter
 	// and uses prepared statement to put this parameters String-data to the
 	// sql-sentence. Then it creates a new object Candidate c
-	// and reads information for this object from a database. Then it adds this object to a list and returns it -Ansku
+	// and reads information for this object from a database. Then it adds this
+	// object to a list and returns it -Ansku
 	public ArrayList<Answers> readAnsw(String id) {
 		Answers a = null;
-		ArrayList<Answers> list=new ArrayList<>();
+		ArrayList<Answers> list = new ArrayList<>();
 		try {
 			String sql = "select * from candidates inner join answers on candidates.candidate_id=answers.candidate_id inner join questions on answers.question_id=questions.question_id where candidates.candidate_id=?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, id);
 			ResultSet RS = stmt.executeQuery();
-			
+
 			while (RS.next()) {
 				a = new Answers();
 				a.setCandi_id(RS.getInt("candidate_id"));
 				a.setQuess_id(RS.getInt("question_id"));
-				a.setAnswer(RS.getInt("answer"));				
+				a.setAnswer(RS.getInt("answer"));
 				a.setFirstname(RS.getString("firstname"));
 				a.setLastname(RS.getString("lastname"));
 				a.setQuestion(RS.getString("question"));
@@ -200,17 +206,17 @@ public class Dao {
 		}
 	}
 
-	// Method for reading all info from candidate by id (from answerquestioncand.jsp id form)
+	// Method for reading all info from candidate by id (from answerquestioncand.jsp
+	// id form)
 	public Candidate readAllInfo(String id) {
 		Candidate cand = null;
 		try {
 			String sql = "select * from candidates where candidate_id=?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, id);
-			
+
 			ResultSet RS = stmt.executeQuery();
 
-			
 			while (RS.next()) {
 				cand = new Candidate();
 				cand.setId(RS.getInt("candidate_id"));
@@ -222,50 +228,117 @@ public class Dao {
 				cand.setAge(RS.getString("age"));
 				cand.setPromo(RS.getString("what_to_promote"));
 				cand.setProfession(RS.getString("profession"));
-	}
+			}
 			return cand;
 		} catch (SQLException e) {
 			return null;
+		}
+
 	}
 
-}
-	//Method to update candidates info from form
-			public Answers UpdateCandidate(Answers can) {
-				
-				try {
-					
-					String sql = "update candidates set lastname=?, firstname=?, picture=?, party=?, municipality=?, age=?, what_to_promote=?, profession=? where candidate_id=?";
-					PreparedStatement pstmt = conn.prepareStatement(sql);
-					
-					pstmt.setString(1, can.getLastname());
-					pstmt.setString(2, can.getFirstname());
-					pstmt.setString(3, can.getPic());
-					pstmt.setString(4, can.getParty());
-					pstmt.setString(5, can.getMunicipality());
-					pstmt.setString(6, can.getAge());
-					pstmt.setString(7, can.getPromo());
-					pstmt.setString(8, can.getProfession());
-					pstmt.setInt(9, can.getCandi_id());
-					
-					String candID = Integer.toString(can.getCandi_id());
-					System.out.println("daossa" + candID + can.getAge() + can.getFirstname() + can.getLastname() + can.getMunicipality() + can.getParty() + can.getProfession() + can.getPromo() + can.getPic() + can.getCandi_id());
-					
-					
-					int rowsUpdated = pstmt.executeUpdate();
-					
-					if (rowsUpdated > 0) {
-						
-						System.out.println("success");
-					} else
-						System.out.println("nope");
-					
-					return readAns(candID);
-					
-				} catch(SQLException e) {
-					
-					System.out.println("Something went wrong");
-				return null;
+	// Method to update candidates info from form
+	public Answers UpdateCandidate(Answers can) {
+
+		try {
+
+			String sql = "update candidates set lastname=?, firstname=?, picture=?, party=?, municipality=?, age=?, what_to_promote=?, profession=? where candidate_id=?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, can.getLastname());
+			pstmt.setString(2, can.getFirstname());
+			pstmt.setString(3, can.getPic());
+			pstmt.setString(4, can.getParty());
+			pstmt.setString(5, can.getMunicipality());
+			pstmt.setString(6, can.getAge());
+			pstmt.setString(7, can.getPromo());
+			pstmt.setString(8, can.getProfession());
+			pstmt.setInt(9, can.getCandi_id());
+
+			String candID = Integer.toString(can.getCandi_id());
+			System.out.println(
+					"daossa" + candID + can.getAge() + can.getFirstname() + can.getLastname() + can.getMunicipality()
+							+ can.getParty() + can.getProfession() + can.getPromo() + can.getPic() + can.getCandi_id());
+
+			int rowsUpdated = pstmt.executeUpdate();
+
+			if (rowsUpdated > 0) {
+
+				System.out.println("success");
+<<<<<<< Updated upstream
+			} else {
+				System.out.println("nope");
 			}
-		}	
-	
+=======
+			} else
+				System.out.println("nope");
+
+>>>>>>> Stashed changes
+			return readAns(candID);
+
+		} catch (SQLException e) {
+
+			System.out.println("Something went wrong");
+			return null;
+		}
 	}
+
+<<<<<<< Updated upstream
+	public Answers updateAnswers(Answers a) {
+
+		System.out.println("ollaanko täällä?");
+		try {
+			
+			System.out.println("try");
+			String sql = "update answers set answer=? where candidate_id=? and question_id=?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, a.getAnswer());
+			pstmt.setInt(3, a.getQuess_id());
+			pstmt.setInt(2, a.getCandi_id());
+=======
+	public Answers SaveAnswers(Answers ans) {
+
+		try {
+
+			String sql = "update answers set question_id=?, answer=? where candidate_id=?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, ans.getQuess_id());
+			pstmt.setInt(2, ans.getAnswer());
+			pstmt.setInt(3, ans.getCandi_id());
+>>>>>>> Stashed changes
+
+			int rowsUpdated = pstmt.executeUpdate();
+
+			if (rowsUpdated > 0) {
+
+				System.out.println("success");
+<<<<<<< Updated upstream
+			} else {
+				System.out.println("nope");
+			}
+
+			int id = a.getCandi_id();
+			String idstr = Integer.toString(id);
+			return readAns(idstr);
+
+		} catch (SQLException e) {
+			System.out.println("catch");
+			return null;
+		}
+	}
+
+=======
+			} else
+				System.out.println("nope");
+
+			return null;
+
+		} catch (SQLException e) {
+
+			System.out.println("Something went wrong");
+			return null;
+		}
+
+	}
+>>>>>>> Stashed changes
+}
