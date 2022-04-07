@@ -92,21 +92,6 @@ public class Dao {
 		}
 	}
 
-	// a method, which gets String 'id' as a parameter and the method executes
-	// delete query based on given id
-	// returns readAllCand()
-	public ArrayList<Candidate> deleteCandidate(String id) {
-		try {
-			String sql = "delete from candidates where candidate_id = ?";
-			PreparedStatement statement = conn.prepareStatement(sql);
-			statement.setString(1, id);
-			statement.executeUpdate();
-			return readAllCand();
-		} catch (SQLException e) {
-			return null;
-		}
-	}
-
 	// this method can be used to read selected candidates info from database. It
 	// gets the candidates id as a parameter
 	// and uses prepared statement to put this parameters String-data to the
@@ -121,7 +106,7 @@ public class Dao {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			// set id to to stmt
 			stmt.setString(1, id);
-			// suorittaa k‰skyn
+			// suorittaa k√§skyn
 			ResultSet RS = stmt.executeQuery();
 
 			while (RS.next()) {
@@ -281,7 +266,7 @@ public class Dao {
 
 	public Answers updateAnswers(Answers a) {
 
-		System.out.println("ollaanko t‰‰ll‰?");
+		System.out.println("ollaanko t√§√§ll√§?");
 		try {
 			
 			System.out.println("try");
@@ -301,8 +286,8 @@ public class Dao {
 			} else {
 				System.out.println("nope");
 			}
-
-			int id = a.getCandi_id();
+      
+      int id = a.getCandi_id();
 			String idstr = Integer.toString(id);
 			return readAns(idstr);
 
@@ -311,6 +296,68 @@ public class Dao {
 			return null;
 		}
 	}
+  
+	}
+			
+	// method that deletes candidate based on a candidate id
+	// gets id (=candidate id) as a parameter
+	// returns readAllCand()
+	public ArrayList<Candidate> deleteCandidate(String id) {
+		try {
+			String sql = "delete from candidates where candidate_id = ?";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setString(1, id);
+			statement.executeUpdate();
+			
+			return readAllCand();
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+	
+	// method that deletes a candidate and it's answers on answers table based on candidate id
+	// gets candidate id as a parameter
+	// uses PreparedStatement to set parameter in the statement
+	// returns true if removal was success
+	public boolean deleteAnswers(String cid) {
+		try {
+			String sql = "delete from answers where candidate_id = ?";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setString(1, cid);
+			statement.executeUpdate();
+			
+			return true;
+		} catch (SQLException e) {
+			return false;
+		}
+	}
 
+	// method that inserts 0 for the answers of all questions on answers table based on candidate's id
+	// ! resets one candidate's answers in practice
+	// gets candidate id and question id as parameters
+	// uses PreparedStatement in while loop to set both parameters in the statement
+	// i = iterations, ques_id = question id, adding 1 to both i and ques_id on each iteration
+	// returns true, if zeros are successfully inserted
+	public boolean insertZeroToAnswer(String cid, int qid) {
+		int i = 0;
+		int ques_id = 1;
+		
+		try {
+			while (i < 10) {
+				String sql = "insert into answers (candidate_id, question_id, answer) values((select candidate_id from candidates where candidate_id = ?),(select question_id from questions where question_id = ?), 0)";
+				PreparedStatement statement = conn.prepareStatement(sql);
+				statement.setString(1, cid);
+				statement.setInt(2, ques_id);
+				statement.executeUpdate();
+				ques_id++;
+				i++;
+			}
+			System.out.println("DAO While Loop: Iterations " + i);
+			System.out.println("DAO While Loop: Question Id " + ques_id);
 
+			return true;
+		} catch (SQLException e) {
+			return false;
+		}
+	}
 }
