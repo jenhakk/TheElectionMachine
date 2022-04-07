@@ -106,7 +106,9 @@ public class Dao {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			// set id to to stmt
 			stmt.setString(1, id);
+
 			// suorittaa käskyn
+
 			ResultSet RS = stmt.executeQuery();
 
 			while (RS.next()) {
@@ -264,18 +266,16 @@ public class Dao {
 	}
 
 
-	public Answers updateAnswers(Answers a) {
+	public ArrayList<Answers> updateAnswers(Answers a) {
 
-		System.out.println("ollaanko täällä?");
 		try {
-			
+
 			System.out.println("try");
 			String sql = "update answers set answer=? where candidate_id=? and question_id=?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, a.getAnswer());
 			pstmt.setInt(3, a.getQuess_id());
 			pstmt.setInt(2, a.getCandi_id());
-
 
 			int rowsUpdated = pstmt.executeUpdate();
 
@@ -289,7 +289,7 @@ public class Dao {
       
       int id = a.getCandi_id();
 			String idstr = Integer.toString(id);
-			return readAns(idstr);
+			return readAnsw(idstr);
 
 		} catch (SQLException e) {
 			System.out.println("catch");
@@ -297,7 +297,6 @@ public class Dao {
 		}
 	}
   
-	}
 			
 	// method that deletes candidate based on a candidate id
 	// gets id (=candidate id) as a parameter
@@ -332,6 +331,7 @@ public class Dao {
 		}
 	}
 
+
 	// method that inserts 0 for the answers of all questions on answers table based on candidate's id
 	// ! resets one candidate's answers in practice
 	// gets candidate id and question id as parameters
@@ -361,3 +361,4 @@ public class Dao {
 		}
 	}
 }
+

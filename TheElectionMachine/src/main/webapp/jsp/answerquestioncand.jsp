@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+
 <%@ page import= "java.util.ArrayList" %>
 
 <%@ page import="data.Answers"%>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,7 +71,7 @@
 
 
 		<h2 class="answer">Answer questions and submit</h2>
-		
+
 			<% 
 			ArrayList<Answers> answers = (ArrayList<Answers>)request.getAttribute("answers");
 		
@@ -80,18 +80,16 @@
 			{
 			%>
 			
+
 		<!-- Question element starts -->
 		<form action="/SaveValueButtons" method="POST" class="forminfo">
-			
-			<input type="hidden" name="candidate" value="${candi.id}">
-			
 		
-			
-
 			<div>
+				<input type="hidden" name="candidate" value="${candi.id}">
 				<input type="hidden" id="ques" name="quesid" value="<%=i%>"/>
 
 			</div>
+
 				
 				<p class="question"><%=i%>. ${oikea.get(0).getQuestion()}</p>
 
@@ -131,6 +129,7 @@
 				<% } 
 									
 		 		%>
+
 		
 		<div class="row justify-content-end">	<button class="btn btn-primary" id="submit-que" type="submit">SUBMIT</button></div>
 		</form>
@@ -142,6 +141,7 @@
 			
 			
 		</div>
+
 
 
 	<script
