@@ -36,12 +36,14 @@ public class SaveValueButtons extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Answers list = null;
 
-		// haetaan candidaatin id ja kysymysid answerquestionscand.jsp:lt� ja muutetaan
-		// inteiksi
+		ArrayList<Answers> list = null;
+		
+		//haetaan candidaatin id ja kysymysid answerquestionscand.jsp:lt� ja muutetaan inteiksi
 		int cid = Integer.parseInt(request.getParameter("candidate"));
 		int qid = Integer.parseInt(request.getParameter("quesid"));
+		String cidd = request.getParameter("candidate");
+		
 
 		if (dao.getConnection()) {
 
@@ -63,6 +65,7 @@ public class SaveValueButtons extends HttpServlet {
 				// kasvatetaan kysymyksen numeroa ja aloitetaan uudestaan
 				qid++;
 			}
+		list=dao.readAnsw(cidd);
 
 		} else {
 
