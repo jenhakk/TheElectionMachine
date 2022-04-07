@@ -85,7 +85,7 @@
 		<form action="/SaveValueButtons" method="POST" class="forminfo">
 		
 			<div>
-
+				<input type="hidden" name="candidate" value="${candi.id}">
 				<input type="hidden" id="ques" name="quesid" value="<%=i%>"/>
 
 			</div>
