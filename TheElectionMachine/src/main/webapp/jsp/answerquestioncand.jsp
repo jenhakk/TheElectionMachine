@@ -129,16 +129,16 @@
 				<% } 
 									
 		 		%>
-
+		<div class="row justify-content-center">	
+			<div class="col-2"><button class="btn btn-primary" type="submit" style="margin-bottom: 50px;">SUBMIT</button></div>
+			<div class="col-2"><button class="btn btn-primary" name="back" onclick="history.back()" style="margin-bottom: 50px;">BACK</button></div>
+		</div>
 		
-		<div class="row justify-content-end">	<button class="btn btn-primary" id="submit-que" type="submit">SUBMIT</button></div>
+		
 		</form>
 			
-				<a href="/GetCandId?id=${candform.candi_id}" class="btn btn-primary">BACK</a>
-			 
-
-			<button class="btn btn-primary" type="delete">DELETE</button>
-			
+				
+				
 			
 		</div>
 
