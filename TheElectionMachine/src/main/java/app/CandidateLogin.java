@@ -51,19 +51,16 @@ public class CandidateLogin extends HttpServlet {
 
 			listq = dao.readAllQuestions();
 			can = dao.readCandi(id);
-			
-			}
-		//System.out.println(list);
+
+		}
+		// System.out.println(list);
 		System.out.println("listQ" + listq);
 
+		request.setAttribute("candi", can);
+		request.setAttribute("answers", list);
+		request.setAttribute("oikea", listq);
 
-
-			request.setAttribute("candi", can);
-			request.setAttribute("answers", list);
-			request.setAttribute("oikea", listq);
-
-			RequestDispatcher rd = request.getRequestDispatcher("/jsp/answerquestioncand.jsp");
-			rd.forward(request, response);
-		}
+		RequestDispatcher rd = request.getRequestDispatcher("/jsp/answerquestioncand.jsp");
+		rd.forward(request, response);
 	}
 }
