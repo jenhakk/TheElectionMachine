@@ -86,8 +86,9 @@
                     <textarea type="text" class="infoperarea" id="promo" name="promo" required>${requestScope.candform.promo}</textarea>
                 </div class="row">
               	<div class="col">
-				<a href="/GetCandId?id=${candform.candi_id}" class="btn btn-primary">BACK</a>
+				<button type="button" class="btn btn-primary" name="back" onclick="history.back()">BACK</button>
 			</div>
+			
 			<div class="col">
 				<input type="submit" class="btn btn-primary" name="ok" value="SAVE">
 			</div>

@@ -71,8 +71,9 @@
 
 			<!-- Not sure if we want to have this, can be deleted later -->
 			<div class="col">
-				<a href="/CandidateLoginBack?id=${candper.candi_id}" class="btn btn-primary">BACK</a>
+				<button type="button" class="btn btn-primary" name="back" onclick="history.back()">BACK</button>
 			</div>
+			
 			<div class="col">
 				<a href="/ShowInfoForm?id=${candper.candi_id}" class="btn btn-primary">EDIT</a>
 			</div>
