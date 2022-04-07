@@ -60,7 +60,7 @@ public class CandidateLogin extends HttpServlet {
 		request.setAttribute("answers", list);
 		request.setAttribute("oikea", listq);
 
-		RequestDispatcher rd = request.getRequestDispatcher("/jsp/answerquestioncand.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/jsp/showanswerstocandidate.jsp");
 		rd.forward(request, response);
 	}
 }

@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
+import data.Answers;
+import data.Candidate;
 import data.Questions;
 
 /**
@@ -38,13 +40,27 @@ public class AnswerQuestionsCandidate extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Questions> list = null;
+		String id = request.getParameter("id");
+
+		ArrayList<Answers> list = null;
+		ArrayList<Questions> listq = null;
+		Candidate can = null;
+		Questions q = null;
+
 		if (dao.getConnection()) {
-			list = dao.readAllQuestions();
-		} else {
-			System.out.println("Connection error");
+			list = dao.readAnsw(id);
+
+			listq = dao.readAllQuestions();
+			can = dao.readCandi(id);
+
 		}
-		request.setAttribute("questions", list);
+		// System.out.println(list);
+		System.out.println("listQ" + listq);
+
+		request.setAttribute("candi", can);
+		request.setAttribute("answers", list);
+		request.setAttribute("oikea", listq);
+
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/answerquestioncand.jsp");
 		rd.forward(request, response);
 	}
