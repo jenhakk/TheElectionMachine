@@ -22,6 +22,46 @@
 
     <main class="main_show">
     <div class="col"><a href="/index.html" class="btnhome">HOME</a></div>
+    
+    <div class="row" id="row-ansque">
+
+			<div class="col-6">
+
+				<form action="/GetCandId" method="post" class="candform">
+
+					<div class="row" style="margin-bottom: 5px;">
+						<div class="col">
+							<label for="candi">Candidate</label>
+						</div>
+						<div class="col">
+							<input type="text" id="name" name="name"
+								value="${answers.get(0).getLastname()} ${answers.get(0).getFirstname()}"
+								disabled="disabled">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col">
+							<label for="candi_id">Number</label>
+						</div>
+						<div class="col">
+							<input type="text" id="candi_id" name="candi_id"
+								value="${answers.get(0).getCandi_id()}" disabled="disabled">
+						</div>
+
+					</div>
+
+				</form>
+
+			</div>
+
+			<div class="col-6">
+				<a href="/GetCandId?id=${answers.get(0).getCandi_id()}"><div
+						class="btn btn-primary" id="but-personal">PERSONAL
+						INFORMATION</div></a>
+
+			</div>
+		</div>
 
         <h2 class="h2show">Your answers dear ${answers.get(0).getFirstname()} ${answers.get(0).getLastname()}:</h2>
         <div class="container-fluid" id="showcon">
@@ -55,7 +95,7 @@
              	<c:choose>
             <c:when test="${answers.get(0).getAnswer() == 0}"><div class="col-3"><a href="/AnswerQuestionsCandidate?id=${answers.get(0).getCandi_id()}" class="btn btn-primary">ANSWER<br>QUESTIONS</a></div></c:when>
             
-            <c:when test="${answers.get(0).getAnswer() != 0}"><div class="col-3"><a href="" style="display:block;" class="btn btn-primary">EDIT</a></div></c:when></c:choose>
+            <c:when test="${answers.get(0).getAnswer() != 0}"><div class="col-3"><a href="/EditQuestionsCand?id=${answers.get(0).getCandi_id()}" style="display:block;" class="btn btn-primary">EDIT</a></div></c:when></c:choose>
 				
 				<div class="col-3"><a href="/DeleteAnswers?id=${answers.get(0).getCandi_id()}&qid=${answers.get(0).getQuess_id()}" class="btn btn-primary">DELETE</a></div>
         </div>
