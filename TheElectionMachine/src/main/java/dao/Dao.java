@@ -264,7 +264,7 @@ public class Dao {
 	}
 
 
-	public Answers updateAnswers(Answers a) {
+	public ArrayList<Answers> updateAnswers(Answers a) {
 
 		System.out.println("ollaanko täällä?");
 		try {
@@ -289,7 +289,7 @@ public class Dao {
       
       int id = a.getCandi_id();
 			String idstr = Integer.toString(id);
-			return readAns(idstr);
+			return readAnsw(idstr);
 
 		} catch (SQLException e) {
 			System.out.println("catch");
@@ -297,7 +297,6 @@ public class Dao {
 		}
 	}
   
-	}
 			
 	// method that deletes candidate based on a candidate id
 	// gets id (=candidate id) as a parameter
