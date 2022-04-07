@@ -20,6 +20,10 @@
 <body id="showans" style="background-image: url(/pics/minionsvertical.png); background-repeat: no-repeat;background-position: left 50px bottom 50px;background-size: 25vw;">
 		
     <main class="main_show">
+    <div class="row">
+	<div class="col" style="position: absolute; left: 0; margin-top:0px; margin-right: 10px;"><a href="/index.html" class="btnhome">HOME</a></div>
+	<div class="col" style="position: absolute; left: 180px"; margin-top:0px;><a href="/ShowSpecificCandidate?id=" class="btn btn-primary">BACK</a></div>
+	</div>
 		
         <h2 class="h2show"> </h2>
       

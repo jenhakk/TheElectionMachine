@@ -44,12 +44,13 @@ public class CandidateLoginBack extends HttpServlet {
 		if (dao.getConnection()) {
 			list = dao.readAnsw(id);
 		}
-		System.out.println(list);
 		
 		request.setAttribute("answers", list);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/answerquestioncand.jsp");
+		RequestDispatcher rds = request.getRequestDispatcher("/SaveValueButtons");
 		rd.forward(request, response);
+		rds.forward(request, response);
 	}
 
 	

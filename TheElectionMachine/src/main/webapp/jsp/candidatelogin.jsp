@@ -15,6 +15,7 @@
     style="background-image: url('/pics/minioncandidate.png'); background-repeat: no-repeat;background-position: right 200px bottom 100px;background-size: 25vw;">
 
     <main>
+    <div class="col"><a href="/index.html" class="btnhome">HOME</a></div>
         <div class="container">
             <h2 id="enter">Enter your candidate number:</h2>
 
