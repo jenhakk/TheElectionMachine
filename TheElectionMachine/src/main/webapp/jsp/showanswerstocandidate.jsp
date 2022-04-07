@@ -24,7 +24,7 @@
     <div class="col"><a href="/index.html" class="btnhome">HOME</a></div>
 
         <h2 class="h2show">Your answers dear ${answers.get(0).getFirstname()} ${answers.get(0).getLastname()}:</h2>
-        <div class="container-fluid" id="showcon"></div>
+        <div class="container-fluid" id="showcon">
 
         <table class="table table-bordered" id="tableshow">
             <thead>
@@ -52,11 +52,12 @@
         </table>
 
         <div class="row justify-content-end">
-                
-            <div class="col-3"><a href="" class="btn btn-primary">EDIT</a></div>
-            <div class="col-3"><a href="/DeleteAnswers?id=${answers.get(0).getCandi_id()}&qid=${answers.get(0).getQuess_id()}" class="btn btn-primary">DELETE</a></div>
-            <div class="col-3"><a href="/AnswerQuestionsCandidate?id=${answers.get(0).getCandi_id()}" class="btn btn-primary">ANSWER<br>QUESTIONS</a></div>
-
+             	<c:choose>
+            <c:when test="${answers.get(0).getAnswer() == 0}"><div class="col-3"><a href="/AnswerQuestionsCandidate?id=${answers.get(0).getCandi_id()}" class="btn btn-primary">ANSWER<br>QUESTIONS</a></div></c:when>
+            
+            <c:when test="${answers.get(0).getAnswer() != 0}"><div class="col-3"><a href="" style="display:block;" class="btn btn-primary">EDIT</a></div></c:when></c:choose>
+				
+				<div class="col-3"><a href="/DeleteAnswers?id=${answers.get(0).getCandi_id()}&qid=${answers.get(0).getQuess_id()}" class="btn btn-primary">DELETE</a></div>
         </div>
         </div>
 
