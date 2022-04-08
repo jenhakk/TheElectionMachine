@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
 import data.Answers;
+import data.Candidate;
 
 /**
  * Servlet implementation class SaveValueButtonsUser
@@ -73,7 +74,7 @@ public class SaveValueButtonsUser extends HttpServlet {
 		Iterator<Map.Entry<Integer, Integer>> iteratorK = entrySet.iterator();
 		Iterator<Map.Entry<Integer, Integer>> iteratorV = entrySet.iterator();
 
-		//Alustetaan muuttujat iterointia varten
+		// Alustetaan muuttujat iterointia varten
 		int i = 0;
 		int index = 1;
 		int cand1 = 0;
@@ -83,7 +84,7 @@ public class SaveValueButtonsUser extends HttpServlet {
 		int cand2p = 0;
 		int cand3p = 0;
 
-		//haetaan kolme ensimmäistä avainta
+		// haetaan kolme ensimmäistä avainta
 		while (iteratorK.hasNext()) {
 
 			if (index - 1 == i) {
@@ -94,7 +95,7 @@ public class SaveValueButtonsUser extends HttpServlet {
 			}
 		}
 
-		//haetaan kolme ensimmäisen avaimen arvot
+		// haetaan kolme ensimmäisen avaimen arvot
 		while (iteratorV.hasNext()) {
 
 			if (index - 1 == i) {
@@ -105,30 +106,46 @@ public class SaveValueButtonsUser extends HttpServlet {
 			}
 		}
 
+		String cand1str = Integer.toString(cand1);
+		String cand2str = Integer.toString(cand2);
+		String cand3str = Integer.toString(cand3);
+		
+	
 		// print value
-		System.out.println(
-				"cand1: " + cand1 + "" + cand1p + " cand2: " + cand2 + "" + cand2p + " cand3: " + cand3 + "" + cand3p);
+		System.out.println("cand1: " + cand1 + "" + cand1p + " cand2: " + cand2 + "" + cand2p + " cand3: " + cand3 + "" + cand3p);
+		
+		System.out.println("candstr1 " + cand1str + "candstr2 " + cand2str + "candstr3 " + cand3str);
+	
+	
+		ArrayList<String> top3 = new ArrayList<String>();
+		ArrayList<Candidate> cands = new ArrayList<Candidate>();
+		//Candidate candi = new Candidate();
+		
+		top3.add(cand1str);
+		top3.add(cand2str);
+		top3.add(cand3str);
+		
+		if (dao.getConnection()) {
+			
+			 cands = dao.readAllTopThree(top3);
+			
+			//System.out.println(candi);
+			System.out.println(cands);
+		
+		} else {
+
+			System.out.println("dao ei toimi!");
+		}
+
+		request.setAttribute("top", cands);
+		RequestDispatcher rd = request.getRequestDispatcher("/jsp/suitablecandidates.jsp");
+		rd.forward(request, response);
+
+		
+		
+	
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 
@@ -218,8 +235,8 @@ public class SaveValueButtonsUser extends HttpServlet {
 //		return peee;
 //	}
 
-	
-	//Metodi Mappaa kandidaatit ja pisteet ja sorttaa ne laskevaan järjestykseen pisteiden mukaan
+	// Metodi Mappaa kandidaatit ja pisteet ja sorttaa ne laskevaan järjestykseen
+	// pisteiden mukaan
 	private LinkedHashMap SortCandidatesByPoints(LinkedHashMap<Integer, Integer> candpoints,
 			ArrayList<Integer> userlist) {
 
