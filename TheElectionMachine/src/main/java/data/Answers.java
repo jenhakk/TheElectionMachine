@@ -19,8 +19,12 @@ public class Answers {
 	private ArrayList<Answers> answers;
 	
 	
+	public Answers (int candi_id, int answer) {
+		
+		this.candi_id = candi_id;
+		this.answer = answer;
+	}
 	
-
 	public ArrayList<Answers> getAnswers() {
 		return answers;
 	}
@@ -159,5 +163,6 @@ public class Answers {
 			//Do nothing - the value of id won't be changed
 		}
 	}
+
 		
 }
