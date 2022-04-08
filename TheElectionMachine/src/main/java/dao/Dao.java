@@ -173,6 +173,7 @@ public class Dao {
 			while (RS.next()) {
 				a = new Answers();
 				a.setAnswer(RS.getInt("answer"));
+
 				list.add(a);
 			}
 			return list;
