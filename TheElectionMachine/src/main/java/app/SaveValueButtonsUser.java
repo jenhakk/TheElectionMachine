@@ -68,7 +68,7 @@ public class SaveValueButtonsUser extends HttpServlet {
 			// kokonaislukuna
 			// k‰ytet‰‰n siihen metodia jolle annetaan enduserin vastaukset ja candidaatin
 			// ehdokasnumero
-			int points = getSuitableCandidates(userlist, candidate);
+			int points = compareAnswers(userlist, candidate);
 			// System.out.println("points " + points);
 
 			// Luodaan LinkedHashMap johon tallennetaan avain-arvo-pareina ehdokasnumero ja
@@ -127,11 +127,13 @@ public class SaveValueButtonsUser extends HttpServlet {
 	//Metodi joka vertailee k‰ytt‰j‰n ja ehdokkaiden vastauksia
 	//ottaa parametrina kandidaatin ja k‰ytt‰j‰n vastaukset int-muotoisina listoina
 	//palauttaa yhtenevien vastausten m‰‰r‰n
-	private Integer compareAnswers(ArrayList<Integer> ulist, ArrayList<Integer> cilist) {
-		
-		
-		
+	private Integer compareAnswers(ArrayList<Integer> ulist, int can) {
 
+		
+		ArrayList<Integer> candintlist = new ArrayList<Integer>();
+		candintlist = getCandidatesAnswers(can);
+		
+		
 		//alustetaan muuttuja yhtenevien vastausten lukum‰‰r‰lle, alussa 0
 		int a = 0;
 
@@ -140,7 +142,7 @@ public class SaveValueButtonsUser extends HttpServlet {
 
 			//haetaan molempien listojen samat indeksit ja vertaillaan niit‰ kesken‰‰n
 			//tallennetaan vertailu boolean-muuttujaan
-			boolean isEqual = ulist.get(i).equals(cilist.get(i));
+			boolean isEqual = ulist.get(i).equals(candintlist.get(i));
 			// System.out.println("equal?" + isEqual);
 
 			//jos muuttuja on true, lis‰t‰‰n pistem‰‰r‰‰ yhdell‰
@@ -156,21 +158,21 @@ public class SaveValueButtonsUser extends HttpServlet {
 		return a;
 	}
 
-	
-	//Metodi joka 
-	private Integer getSuitableCandidates(ArrayList<Integer> userlist, int can) {
-
-		int peee = 0;
-
-		ArrayList<Integer> candintlist = new ArrayList<Integer>();
-
-		candintlist = getCandidatesAnswers(can);
-		// System.out.println(candintlist);
-		peee = compareAnswers(userlist, candintlist);
-		// System.out.println("peee " + peee);
-		// System.out.println("return?" + peee);
-
-		return peee;
-	}
+	//Metodi joka ottaa parametrina vastaan k‰ytt‰j‰n vastaukset int-listana sek‰ kandidaatin numeron
+	//
+//	private Integer getSuitableCandidates(ArrayList<Integer> userlist, int can) {
+//
+//		int peee = 0;
+//
+//		ArrayList<Integer> candintlist = new ArrayList<Integer>();
+//
+//		candintlist = getCandidatesAnswers(can);
+//		// System.out.println(candintlist);
+//		peee = compareAnswers(userlist, candintlist);
+//		// System.out.println("peee " + peee);
+//		// System.out.println("return?" + peee);
+//
+//		return peee;
+//	}
 
 }
