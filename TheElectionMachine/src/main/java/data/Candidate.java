@@ -10,12 +10,13 @@ public class Candidate {
 	private String age;
 	private String profession;
 	private String municipality;
+	private String points;
 	
 	
 
 	
 
-	public Candidate(String id, String name, String fname, String pic, String promo, String party, String age, String profession, String municipality) {
+	public Candidate(String id, String name, String fname, String pic, String promo, String party, String age, String profession, String municipality, String points) {
 		// TODO Auto-generated constructor stub
 		setId(id);
 		this.name=name;
@@ -26,6 +27,15 @@ public class Candidate {
 		this.party=party;
 		this.profession=profession;
 		this.municipality=municipality;
+		this.points = points;
+	}
+
+	public String getPoints() {
+		return points;
+	}
+
+	public void setPoints(String points) {
+		this.points = points;
 	}
 
 	public Candidate() {
