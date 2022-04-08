@@ -42,10 +42,10 @@ public class SaveValueButtonsUser extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		ArrayList<Integer> ulist = new ArrayList<Integer>();
-		ArrayList<Answers> clist = new ArrayList<Answers>();
-		ArrayList<Answers> alist = new ArrayList<Answers>();
-		// Answers cand = new Answers();
+		ArrayList<Integer> userlist = new ArrayList<Integer>();
+		ArrayList<Answers> candlist = new ArrayList<Answers>();
+		ArrayList<Integer> candintlist = new ArrayList<Integer>();
+		
 
 		// loopataan kysymysten verran
 		for (int i = 1; i < 11; i++) {
@@ -55,7 +55,7 @@ public class SaveValueButtonsUser extends HttpServlet {
 
 			// luodaan olio jolle annetaan saadut arvot
 
-			ulist.add(answer);
+			userlist.add(answer);
 
 //			for (Integer number:list) {
 //				
@@ -69,14 +69,54 @@ public class SaveValueButtonsUser extends HttpServlet {
 
 			for (int y = 1; y < 8; y++) {
 
-				clist = dao.readCandAns(y);
-				System.out.println(clist);
+				candintlist = getCandidatesAnswers(candlist, y);
+				System.out.println(candintlist);
+				int peee = compareAnswers(userlist, candintlist);
+				System.out.println(peee);
 				
-				
-				
-
 			}
 
 		}
+		
+		
+	}
+	
+
+	private ArrayList<Integer> getCandidatesAnswers(ArrayList<Answers> clist, int y) {
+				
+		ArrayList<Integer> ansintlist = new ArrayList<Integer>();
+		clist = dao.readCandAns(y);
+
+		for (Answers ans : clist) {
+			
+
+			int answers = ans.getAnswer();
+			ansintlist.add(answers);
+
+
+		}
+		
+		return ansintlist;
+	}
+	
+	private Integer compareAnswers(ArrayList<Integer> ulist, ArrayList<Integer> cilist) {
+		
+		int a = 0;
+		
+		for (int i = 0; i< ulist.size(); i++) {
+			
+			boolean isEqual = ulist.get(i).equals(cilist.get(i)); 
+			System.out.println("equal?" + isEqual);
+			
+			if (isEqual == true) {
+				
+				
+				a++;
+			} 
+			
+			System.out.println(a);
+		}
+		
+		return a;
 	}
 }
