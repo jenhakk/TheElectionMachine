@@ -2,11 +2,16 @@ package app;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Spliterator;
+import java.util.Map.Entry;
+import java.util.Set;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
 import data.Answers;
+import data.Candidate;
 
 /**
  * Servlet implementation class SaveValueButtonsUser
@@ -40,7 +46,7 @@ public class SaveValueButtonsUser extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	@SuppressWarnings("null")
+	@SuppressWarnings({ "null", "unchecked" })
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -58,35 +64,90 @@ public class SaveValueButtonsUser extends HttpServlet {
 
 		}
 
-		// candidaatti nro
-		int candidate = 1;
+		LinkedHashMap<Integer, Integer> candpoints = new LinkedHashMap<Integer, Integer>();
 
-		// loopataan kandidaattien m‰‰r‰n verran
-		for (int j = 0; j < 7; j++) {
+		candpoints = SortCandidatesByPoints(candpoints, userlist);
 
-			// alustetaan muuttuja, johon tallennetaan yhtenevien vastausten m‰‰r‰
-			// kokonaislukuna
-			// k‰ytet‰‰n siihen metodia jolle annetaan enduserin vastaukset ja candidaatin
-			// ehdokasnumero
-			int points = compareAnswers(userlist, candidate);
-			// System.out.println("points " + points);
+		Set<Map.Entry<Integer, Integer>> entrySet = candpoints.entrySet();
 
-			// Luodaan LinkedHashMap johon tallennetaan avain-arvo-pareina ehdokasnumero ja
-			// yhtenevien vastausten m‰‰r‰
-			LinkedHashMap<Integer, Integer> candpoints = new LinkedHashMap<Integer, Integer>();
+		// Luodaan iteraattorit avaimille ja arvoille
+		Iterator<Map.Entry<Integer, Integer>> iteratorK = entrySet.iterator();
+		Iterator<Map.Entry<Integer, Integer>> iteratorV = entrySet.iterator();
 
-			// Lis‰t‰‰n ehdokas ja pistem‰‰r‰‰ mappiin
-			candpoints.put(candidate, points);
+		// Alustetaan muuttujat iterointia varten
+		int i = 0;
+		int index = 1;
+		int cand1 = 0;
+		int cand2 = 0;
+		int cand3 = 0;
+		int cand1p = 0;
+		int cand2p = 0;
+		int cand3p = 0;
 
-			// vaihdetaan ehdokasnumeroa
-			candidate++;
+		// haetaan kolme ensimm‰ist‰ avainta
+		while (iteratorK.hasNext()) {
 
-			// tulostetaan ehdokkaat ja niiden pisteet
-			for (Map.Entry<Integer, Integer> m : candpoints.entrySet()) {
-				System.out.println("candidate " + m.getKey() + " " + "points " + m.getValue());
+			if (index - 1 == i) {
+				cand1 = iteratorK.next().getKey();
+				cand2 = iteratorK.next().getKey();
+				cand3 = iteratorK.next().getKey();
+				break;
 			}
 		}
+
+		// haetaan kolme ensimm‰isen avaimen arvot
+		while (iteratorV.hasNext()) {
+
+			if (index - 1 == i) {
+				cand1p = iteratorV.next().getValue();
+				cand2p = iteratorV.next().getValue();
+				cand3p = iteratorV.next().getValue();
+				break;
+			}
+		}
+
+		String cand1str = Integer.toString(cand1);
+		String cand2str = Integer.toString(cand2);
+		String cand3str = Integer.toString(cand3);
+		
+	
+		// print value
+		System.out.println("cand1: " + cand1 + "" + cand1p + " cand2: " + cand2 + "" + cand2p + " cand3: " + cand3 + "" + cand3p);
+		
+		System.out.println("candstr1 " + cand1str + "candstr2 " + cand2str + "candstr3 " + cand3str);
+	
+	
+		ArrayList<String> top3 = new ArrayList<String>();
+		ArrayList<Candidate> cands = new ArrayList<Candidate>();
+		//Candidate candi = new Candidate();
+		
+		top3.add(cand1str);
+		top3.add(cand2str);
+		top3.add(cand3str);
+		
+		if (dao.getConnection()) {
+			
+			 cands = dao.readAllTopThree(top3);
+			
+			//System.out.println(candi);
+			System.out.println(cands);
+		
+		} else {
+
+			System.out.println("dao ei toimi!");
+		}
+
+		request.setAttribute("top", cands);
+		RequestDispatcher rd = request.getRequestDispatcher("/jsp/suitablecandidates.jsp");
+		rd.forward(request, response);
+
+		
+		
+	
 	}
+
+	
+	
 
 	// Metodi joka hakee kandidaatin vastauksen tietokannasta listaan, ottaa
 	// parametrina tyhj‰n listan kandidaatin vastauksille ja ehdokasnumeron
@@ -124,28 +185,26 @@ public class SaveValueButtonsUser extends HttpServlet {
 
 	}
 
-	//Metodi joka vertailee k‰ytt‰j‰n ja ehdokkaiden vastauksia
-	//ottaa parametrina kandidaatin ja k‰ytt‰j‰n vastaukset int-muotoisina listoina
-	//palauttaa yhtenevien vastausten m‰‰r‰n
+	// Metodi joka vertailee k‰ytt‰j‰n ja ehdokkaiden vastauksia
+	// ottaa parametrina kandidaatin ja k‰ytt‰j‰n vastaukset int-muotoisina listoina
+	// palauttaa yhtenevien vastausten m‰‰r‰n
 	private Integer compareAnswers(ArrayList<Integer> ulist, int can) {
 
-		
 		ArrayList<Integer> candintlist = new ArrayList<Integer>();
 		candintlist = getCandidatesAnswers(can);
-		
-		
-		//alustetaan muuttuja yhtenevien vastausten lukum‰‰r‰lle, alussa 0
+
+		// alustetaan muuttuja yhtenevien vastausten lukum‰‰r‰lle, alussa 0
 		int a = 0;
 
-		//k‰yd‰‰n listat l‰pi alkioitten mukaan vastausten m‰‰r‰n verran
+		// k‰yd‰‰n listat l‰pi alkioitten mukaan vastausten m‰‰r‰n verran
 		for (int i = 0; i < ulist.size(); i++) {
 
-			//haetaan molempien listojen samat indeksit ja vertaillaan niit‰ kesken‰‰n
-			//tallennetaan vertailu boolean-muuttujaan
+			// haetaan molempien listojen samat indeksit ja vertaillaan niit‰ kesken‰‰n
+			// tallennetaan vertailu boolean-muuttujaan
 			boolean isEqual = ulist.get(i).equals(candintlist.get(i));
 			// System.out.println("equal?" + isEqual);
 
-			//jos muuttuja on true, lis‰t‰‰n pistem‰‰r‰‰ yhdell‰
+			// jos muuttuja on true, lis‰t‰‰n pistem‰‰r‰‰ yhdell‰
 			if (isEqual == true) {
 
 				a++;
@@ -154,11 +213,12 @@ public class SaveValueButtonsUser extends HttpServlet {
 			// System.out.println(a);
 		}
 
-		//palautetaan yhteispistem‰‰r‰
+		// palautetaan yhteispistem‰‰r‰
 		return a;
 	}
 
-	//Metodi joka ottaa parametrina vastaan k‰ytt‰j‰n vastaukset int-listana sek‰ kandidaatin numeron
+	// Metodi joka ottaa parametrina vastaan k‰ytt‰j‰n vastaukset int-listana sek‰
+	// kandidaatin numeron
 	//
 //	private Integer getSuitableCandidates(ArrayList<Integer> userlist, int can) {
 //
@@ -174,5 +234,65 @@ public class SaveValueButtonsUser extends HttpServlet {
 //
 //		return peee;
 //	}
+
+	// Metodi Mappaa kandidaatit ja pisteet ja sorttaa ne laskevaan j‰rjestykseen
+	// pisteiden mukaan
+	private LinkedHashMap SortCandidatesByPoints(LinkedHashMap<Integer, Integer> candpoints,
+			ArrayList<Integer> userlist) {
+
+		// candidaatti nro
+		int candidate = 1;
+
+		// loopataan kandidaattien m‰‰r‰n verran
+		for (int j = 0; j < 7; j++) {
+
+			// alustetaan muuttuja, johon tallennetaan yhtenevien vastausten m‰‰r‰
+			// kokonaislukuna
+			// k‰ytet‰‰n siihen metodia jolle annetaan enduserin vastaukset ja candidaatin
+			// ehdokasnumero
+			int points = compareAnswers(userlist, candidate);
+			// System.out.println("points " + points);
+
+			// Luodaan LinkedHashMap johon tallennetaan avain-arvo-pareina ehdokasnumero ja
+			// yhtenevien vastausten m‰‰r‰
+
+			// Lis‰t‰‰n ehdokas ja pistem‰‰r‰‰ mappiin
+			candpoints.put(candidate, points);
+
+			// vaihdetaan ehdokasnumeroa
+			candidate++;
+		}
+		// tulostetaan ehdokkaat ja niiden pisteet
+		for (Map.Entry<Integer, Integer> m : candpoints.entrySet()) {
+			System.out.println("candidate " + m.getKey() + " " + "points " + m.getValue());
+		}
+
+		Set<Map.Entry<Integer, Integer>> CandidateOrder = candpoints.entrySet();
+
+		List<Map.Entry<Integer, Integer>> CandidateOrderListEntry = new ArrayList<Map.Entry<Integer, Integer>>(
+				CandidateOrder);
+
+		Collections.sort(CandidateOrderListEntry, new Comparator<Map.Entry<Integer, Integer>>() {
+
+			@Override
+			public int compare(Entry<Integer, Integer> es1, Entry<Integer, Integer> es2) {
+				return es2.getValue().compareTo(es1.getValue());
+			}
+		});
+
+		candpoints.clear();
+
+		for (Map.Entry<Integer, Integer> map : CandidateOrderListEntry) {
+			candpoints.put(map.getKey(), map.getValue());
+		}
+
+		for (Map.Entry<Integer, Integer> lhmap : candpoints.entrySet()) {
+			System.out.println("Key : " + lhmap.getKey() + "\t\t" + "Value : " + lhmap.getValue());
+
+		}
+
+		return candpoints;
+
+	}
 
 }
