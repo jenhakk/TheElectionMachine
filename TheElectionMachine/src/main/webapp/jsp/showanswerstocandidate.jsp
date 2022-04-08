@@ -95,10 +95,11 @@
              	<c:choose>
             <c:when test="${answers.get(0).getAnswer() == 0}"><div class="col-3"><a href="/AnswerQuestionsCandidate?id=${answers.get(0).getCandi_id()}" class="btn btn-primary">ANSWER<br>QUESTIONS</a></div></c:when>
             
-            <c:when test="${answers.get(0).getAnswer() != 0}"><div class="col-3"><a href="/EditQuestionsCand?id=${answers.get(0).getCandi_id()}" style="display:block;" class="btn btn-primary">EDIT</a></div></c:when></c:choose>
+            <c:when test="${answers.get(0).getAnswer() != 0}"><div class="col-3"><a href="/EditQuestionsCand?id=${answers.get(0).getCandi_id()}" style="display:block;" class="btn btn-primary">EDIT</a></div>
+            <div class="col-3"><a href="/DeleteAnswers?id=${answers.get(0).getCandi_id()}&qid=${answers.get(0).getQuess_id()}" class="btn btn-primary">DELETE ANSWERS</a></div></c:when></c:choose>
 				
-				<div class="col-3"><a href="/DeleteAnswers?id=${answers.get(0).getCandi_id()}&qid=${answers.get(0).getQuess_id()}" class="btn btn-primary">DELETE</a></div>
-        </div>
+			        
+			</div>
         </div>
 
     </main>
