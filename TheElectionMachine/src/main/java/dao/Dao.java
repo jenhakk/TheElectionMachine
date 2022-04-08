@@ -92,15 +92,17 @@ public class Dao {
 		}
 	}
 
-	public ArrayList<Candidate> readAllTopThree(ArrayList<String> strlist) {
+	public ArrayList<Candidate> readAllTopThree(ArrayList<String> strlist, ArrayList<String> points) {
 		ArrayList<Candidate> list = new ArrayList<>();
 
 		try {
 
+			int x = 0;
 			for (int i = 0; i < strlist.size(); i++) {
 				
-				int x = 1;
+				
 				String id = strlist.get(x);
+				String point = points.get(x);
 
 				String sql = "select * from candidates where candidate_id = ?";
 				PreparedStatement stmt = conn.prepareStatement(sql);
@@ -119,8 +121,10 @@ public class Dao {
 					a.setMunicipality(RS.getString("municipality"));
 					a.setParty(RS.getString("party"));
 					a.setProfession(RS.getString("profession"));
+					a.setPoints(point);
 
 					list.add(a);
+					x++;
 				}
 			}
 			return list;

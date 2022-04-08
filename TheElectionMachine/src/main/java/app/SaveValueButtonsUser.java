@@ -106,9 +106,17 @@ public class SaveValueButtonsUser extends HttpServlet {
 			}
 		}
 
+		cand1p = cand1p*10;
+		cand2p = cand2p*10;
+		cand3p = cand3p*10;
+		
 		String cand1str = Integer.toString(cand1);
 		String cand2str = Integer.toString(cand2);
 		String cand3str = Integer.toString(cand3);
+		
+		String cand1pstr = Integer.toString(cand1p);
+		String cand2pstr = Integer.toString(cand2p);
+		String cand3pstr = Integer.toString(cand3p);
 		
 	
 		// print value
@@ -119,18 +127,28 @@ public class SaveValueButtonsUser extends HttpServlet {
 	
 		ArrayList<String> top3 = new ArrayList<String>();
 		ArrayList<Candidate> cands = new ArrayList<Candidate>();
+		ArrayList<String> pointslist = new ArrayList<String>();
 		//Candidate candi = new Candidate();
 		
 		top3.add(cand1str);
 		top3.add(cand2str);
 		top3.add(cand3str);
 		
+		pointslist.add(cand1pstr);
+		pointslist.add(cand2pstr);
+		pointslist.add(cand3pstr);
+		
+		System.out.println("points" + pointslist.get(0));
+		
 		if (dao.getConnection()) {
 			
-			 cands = dao.readAllTopThree(top3);
+			 cands = dao.readAllTopThree(top3, pointslist);
+			 
 			
 			//System.out.println(candi);
-			System.out.println(cands);
+			System.out.println(cands.get(0).getFname());
+			System.out.println(cands.get(1).getFname());
+			System.out.println(cands.get(2).getFname());
 		
 		} else {
 
@@ -138,6 +156,7 @@ public class SaveValueButtonsUser extends HttpServlet {
 		}
 
 		request.setAttribute("top", cands);
+	
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/suitablecandidates.jsp");
 		rd.forward(request, response);
 
