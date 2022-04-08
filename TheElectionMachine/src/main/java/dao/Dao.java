@@ -161,6 +161,27 @@ public class Dao {
 		}
 	}
 
+	public ArrayList<Answers> readCandAns(int id) {
+		Answers a = null;
+		ArrayList<Answers> list = new ArrayList<>();
+		try {
+			String sql = "select * from candidates inner join answers on candidates.candidate_id=answers.candidate_id inner join questions on answers.question_id=questions.question_id where candidates.candidate_id=?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id);
+			ResultSet RS = stmt.executeQuery();
+
+			while (RS.next()) {
+				a = new Answers();
+				a.setAnswer(RS.getInt("answer"));
+				list.add(a);
+			}
+			return list;
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+	
+	
 	// this method can be used to read selected candidates answers + other info from
 	// database. It
 	// gets the candidates id as a parameter
