@@ -19,6 +19,12 @@ public class Answers {
 	private ArrayList<Answers> answers;
 	
 	
+	public Answers (int quess_id, int answer) {
+		
+		this.quess_id = quess_id;
+		this.answer = answer;
+	}
+	
 	
 
 	public ArrayList<Answers> getAnswers() {
