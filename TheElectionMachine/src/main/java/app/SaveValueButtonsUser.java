@@ -3,6 +3,8 @@ package app;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Spliterator;
 
 import javax.servlet.ServletException;
@@ -42,10 +44,8 @@ public class SaveValueButtonsUser extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		// alustetaan lista enduserin vastauksia varten
 		ArrayList<Integer> userlist = new ArrayList<Integer>();
-		ArrayList<Answers> candlist = new ArrayList<Answers>();
-		ArrayList<Integer> candintlist = new ArrayList<Integer>();
-		
 
 		// loopataan kysymysten verran
 		for (int i = 1; i < 11; i++) {
@@ -53,70 +53,124 @@ public class SaveValueButtonsUser extends HttpServlet {
 			// haetaan jokaisen kysymyksen vastauksen arvo (i)
 			int answer = Integer.parseInt(request.getParameter("ques" + (i)));
 
-			// luodaan olio jolle annetaan saadut arvot
-
+			// lis‰t‰‰n vastaus listaan
 			userlist.add(answer);
 
-//			for (Integer number:list) {
-//				
-//				System.out.println(number);
-//				
-//			}
-
 		}
+
+		// candidaatti nro
+		int candidate = 1;
+
+		// loopataan kandidaattien m‰‰r‰n verran
+		for (int j = 0; j < 7; j++) {
+
+			// alustetaan muuttuja, johon tallennetaan yhtenevien vastausten m‰‰r‰
+			// kokonaislukuna
+			// k‰ytet‰‰n siihen metodia jolle annetaan enduserin vastaukset ja candidaatin
+			// ehdokasnumero
+			int points = getSuitableCandidates(userlist, candidate);
+			// System.out.println("points " + points);
+
+			// Luodaan LinkedHashMap johon tallennetaan avain-arvo-pareina ehdokasnumero ja
+			// yhtenevien vastausten m‰‰r‰
+			LinkedHashMap<Integer, Integer> candpoints = new LinkedHashMap<Integer, Integer>();
+
+			// Lis‰t‰‰n ehdokas ja pistem‰‰r‰‰ mappiin
+			candpoints.put(candidate, points);
+
+			// vaihdetaan ehdokasnumeroa
+			candidate++;
+
+			// tulostetaan ehdokkaat ja niiden pisteet
+			for (Map.Entry<Integer, Integer> m : candpoints.entrySet()) {
+				System.out.println("candidate " + m.getKey() + " " + "points " + m.getValue());
+			}
+		}
+	}
+
+	// Metodi joka hakee kandidaatin vastauksen tietokannasta listaan, ottaa
+	// parametrina tyhj‰n listan kandidaatin vastauksille ja ehdokasnumeron
+	// integerin‰
+	private ArrayList<Integer> getCandidatesAnswers(int y) {
+
+		// Alustetaan objektimuotoinen lista, johon tallennetaan kandidaatin vastaukset
+		// tietokannasta objekteina
+		ArrayList<Answers> clist = new ArrayList<Answers>();
+
+		// Alustetaan int-muotoinen lista, johon tallennetaan kandidaatin vastaukset
+		// numeromuodossa
+		ArrayList<Integer> ansintlist = new ArrayList<Integer>();
 
 		if (dao.getConnection()) {
 
-			for (int y = 1; y < 8; y++) {
+			// haetaan listalle kandidaatin vastaukset tietokannasta
+			clist = dao.readCandAns(y);
 
-				candintlist = getCandidatesAnswers(candlist, y);
-				System.out.println(candintlist);
-				int peee = compareAnswers(userlist, candintlist);
-				System.out.println(peee);
-				
+			// luodaan Answers-luokan olio joka looppaa objektimuotoisen listan l‰pi
+			for (Answers ans : clist) {
+
+				// luodaan int-muuttuja johon haetaan vastaus int-muodossa
+				int answers = ans.getAnswer();
+
+				// lis‰t‰‰n muuttuja listaan
+				ansintlist.add(answers);
+
 			}
 
 		}
-		
-		
-	}
-	
 
-	private ArrayList<Integer> getCandidatesAnswers(ArrayList<Answers> clist, int y) {
-				
-		ArrayList<Integer> ansintlist = new ArrayList<Integer>();
-		clist = dao.readCandAns(y);
-
-		for (Answers ans : clist) {
-			
-
-			int answers = ans.getAnswer();
-			ansintlist.add(answers);
-
-
-		}
-		
+		// palautetaan vastaukset int-muotoisena listana
 		return ansintlist;
+
 	}
-	
+
+	//Metodi joka vertailee k‰ytt‰j‰n ja ehdokkaiden vastauksia
+	//ottaa parametrina kandidaatin ja k‰ytt‰j‰n vastaukset int-muotoisina listoina
+	//palauttaa yhtenevien vastausten m‰‰r‰n
 	private Integer compareAnswers(ArrayList<Integer> ulist, ArrayList<Integer> cilist) {
 		
+		
+		
+
+		//alustetaan muuttuja yhtenevien vastausten lukum‰‰r‰lle, alussa 0
 		int a = 0;
-		
-		for (int i = 0; i< ulist.size(); i++) {
-			
-			boolean isEqual = ulist.get(i).equals(cilist.get(i)); 
-			System.out.println("equal?" + isEqual);
-			
+
+		//k‰yd‰‰n listat l‰pi alkioitten mukaan vastausten m‰‰r‰n verran
+		for (int i = 0; i < ulist.size(); i++) {
+
+			//haetaan molempien listojen samat indeksit ja vertaillaan niit‰ kesken‰‰n
+			//tallennetaan vertailu boolean-muuttujaan
+			boolean isEqual = ulist.get(i).equals(cilist.get(i));
+			// System.out.println("equal?" + isEqual);
+
+			//jos muuttuja on true, lis‰t‰‰n pistem‰‰r‰‰ yhdell‰
 			if (isEqual == true) {
-				
-				
+
 				a++;
-			} 
-			
-			System.out.println(a);
+			}
+
+			// System.out.println(a);
 		}
-		
+
+		//palautetaan yhteispistem‰‰r‰
 		return a;
 	}
+
+	
+	//Metodi joka 
+	private Integer getSuitableCandidates(ArrayList<Integer> userlist, int can) {
+
+		int peee = 0;
+
+		ArrayList<Integer> candintlist = new ArrayList<Integer>();
+
+		candintlist = getCandidatesAnswers(can);
+		// System.out.println(candintlist);
+		peee = compareAnswers(userlist, candintlist);
+		// System.out.println("peee " + peee);
+		// System.out.println("return?" + peee);
+
+		return peee;
+	}
+
 }
