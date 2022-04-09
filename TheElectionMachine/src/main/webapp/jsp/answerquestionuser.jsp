@@ -5,6 +5,7 @@
 <%@ page import= "java.util.ArrayList" %>
 
 <%@ page import="data.Answers"%>
+<%@ page import="data.Questions"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +36,7 @@
 		<h2 class="answer">Answer questions and submit</h2>
 
 			<% 
-			ArrayList<Answers> answers = (ArrayList<Answers>)request.getAttribute("questions");
+			ArrayList<Questions> questions = (ArrayList<Questions>)request.getAttribute("questions");
 		
 			for (int i = 1; i < 11; i++)
 		
@@ -53,7 +54,7 @@
 			</div>
 
 				
-				<p class="question"><%=i%>. ${questions.get(0).getQuestion()}</p>
+				<p class="question"><%=i%>. <%=questions.get(i-1).getQuestion()%></p>
 
 
 				<div class="card" id="ques-card">
