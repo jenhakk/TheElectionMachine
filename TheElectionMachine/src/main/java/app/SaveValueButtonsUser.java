@@ -50,22 +50,22 @@ public class SaveValueButtonsUser extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// alustetaan lista enduserin vastauksia varten
+		// new ArrayList for to a store end-users answers
 		ArrayList<Integer> userlist = new ArrayList<Integer>();
 
-		// loopataan kysymysten verran
+		// loop through the number of questions
 		for (int i = 1; i < 11; i++) {
 
-			// haetaan jokaisen kysymyksen vastauksen arvo (i)
+			// search the answers value (i) from the jsp-file "answerquestionsuser"
 			int answer = Integer.parseInt(request.getParameter("ques" + (i)));
 
-			// lis‰t‰‰n vastaus listaan
+			// add the answer to a list "userlist"
 			userlist.add(answer);
 
 		}
-
+		// new linkedhashmap candpoints for to a save the three best candidates for the enduser  
 		LinkedHashMap<Integer, Integer> candpoints = new LinkedHashMap<Integer, Integer>();
-
+		
 		candpoints = SortCandidatesByPoints(candpoints, userlist);
 
 		Set<Map.Entry<Integer, Integer>> entrySet = candpoints.entrySet();
@@ -254,34 +254,35 @@ public class SaveValueButtonsUser extends HttpServlet {
 //		return peee;
 //	}
 
-	// Metodi Mappaa kandidaatit ja pisteet ja sorttaa ne laskevaan j‰rjestykseen
-	// pisteiden mukaan
+	// 1. First called method, maps the candidates and them points as ascending order by pointsMetodi
 	private LinkedHashMap SortCandidatesByPoints(LinkedHashMap<Integer, Integer> candpoints,
 			ArrayList<Integer> userlist) {
 
-		// candidaatti nro
+		// candidate number
 		int candidate = 1;
 
-		// loopataan kandidaattien m‰‰r‰n verran
+		// loop through the number of candidates, at this point we got seven candidates
 		for (int j = 0; j < 7; j++) {
 
 			// alustetaan muuttuja, johon tallennetaan yhtenevien vastausten m‰‰r‰
 			// kokonaislukuna
 			// k‰ytet‰‰n siihen metodia jolle annetaan enduserin vastaukset ja candidaatin
 			// ehdokasnumero
+			// New variable where save similar answers of candidate and end-user, method "compareAnswers" is called, it gets
+			// userlist and candidates id-numbers as a parameter
 			int points = compareAnswers(userlist, candidate);
 			// System.out.println("points " + points);
 
 			// Luodaan LinkedHashMap johon tallennetaan avain-arvo-pareina ehdokasnumero ja
 			// yhtenevien vastausten m‰‰r‰
 
-			// Lis‰t‰‰n ehdokas ja pistem‰‰r‰‰ mappiin
+			// Add candidate and its points to a candpoints list
 			candpoints.put(candidate, points);
 
-			// vaihdetaan ehdokasnumeroa
+			// next candidate
 			candidate++;
 		}
-		// tulostetaan ehdokkaat ja niiden pisteet
+		// print candidates and them points
 		for (Map.Entry<Integer, Integer> m : candpoints.entrySet()) {
 			System.out.println("candidate " + m.getKey() + " " + "points " + m.getValue());
 		}

@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-
 <%@ page import= "java.util.ArrayList" %>
-
 <%@ page import="data.Answers"%>
 <%@ page import="data.Questions"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -34,10 +31,10 @@
 
 
 		<h2 class="answer">Answer questions and submit</h2>
-
+		<!-- ArrayList from AnswerQuestionsUser-servlets information -->
 			<% 
 			ArrayList<Questions> questions = (ArrayList<Questions>)request.getAttribute("questions");
-		
+			// for loop for going through the questions we got
 			for (int i = 1; i < 11; i++)
 		
 			{
@@ -45,15 +42,16 @@
 			
 
 		<!-- Question element starts -->
+		<!-- This jsp-file sends this forms answers to a SaveValueButtonsUser-servlet -->
 		<form action="/SaveValueButtonsUser" method="POST" class="forminfo">
 		
 			<div>
-				
+				<!-- Hidden element to save questionids value -->
 				<input type="hidden" id="ques" name="quesid" value="<%=i%>"/>
 
 			</div>
 
-				
+				<!-- questions number and questions in a loop -->
 				<p class="question"><%=i%>. <%=questions.get(i-1).getQuestion()%></p>
 
 
