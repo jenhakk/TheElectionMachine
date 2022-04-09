@@ -91,7 +91,7 @@
 			</div>
 
 				
-				<p class="question"><%=i%>. ${oikea.get(0).getQuestion()}</p>
+				<p class="question"><%=i%>. <%=answers.get(i-1).getQuestion()%></p>
 
 
 				<div class="card" id="ques-card">
