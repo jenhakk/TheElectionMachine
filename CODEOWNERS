@@ -1,0 +1,6 @@
+/java/app/    @A-d-f
+/java/dao/    @amakarj
+/java/data/   @jenhakk
+*.jsp    @A-d-f @amakarj @jenhakk
+*.html   @jenhakk
+*.css    @jenhakk
