@@ -39,23 +39,19 @@ public class ShowAnswersToUser extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Here comes something so I get the specifieds candidates answers from a
-		// database...
 
-		// This String id gets the parameter "id" from the .jsp-file
+		// This String id gets the parameter "id" from the candidatedetails.jsp-file
 		String id = request.getParameter("id");
-		//ArrayList about values we will get
+		// ArrayList for to store values we will get, first empty
 		ArrayList<Answers> list = null;
-		// if we get connection, then calls readCandi-method, set id for a parameter to
-		// get
-		// this candidates info
+		// if we get connection, then calls readAnsw-method, set id for a parameter to
+		// get this candidates info from database
 		if (dao.getConnection()) {
 			// send id number to readCandi-method
 			list = dao.readAnsw(id);
 		}
-		// set this list of objects to an attribute
+		// set this list of objects to an attribute and send it to showanswerstouser.jsp
 		request.setAttribute("answers", list);
-		// send it to candidatedetails.jsp
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/showanswerstouser.jsp");
 		rd.forward(request, response);
 

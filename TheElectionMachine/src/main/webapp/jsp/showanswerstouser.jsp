@@ -27,7 +27,8 @@
 		
         <h2 class="h2show"> </h2>
       
-        <!-- Here we get name of the candidate -->
+        <!-- Here we get name of the candidate from servlets "ShowAnswersToUser" ArrayList "list", scope the
+             details needed -->
         <div class="container-fluid" id="showcon">Candidates ${answers.get(0).getFirstname()} ${answers.get(0).getLastname()}s answers:</div>
  		
 	
@@ -41,7 +42,7 @@
             </thead>
             
             <tbody>
-            <!-- Go through candidates answers -->
+            <!-- Go through candidates answers by using foreach -->
             <c:forEach var="ques" items="${requestScope.answers}">
                 <tr>
                     <th scope="row"><c:out value="${ques.quess_id}" /></th>
