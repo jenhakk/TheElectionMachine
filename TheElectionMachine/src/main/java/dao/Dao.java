@@ -171,8 +171,7 @@ public class Dao {
 		}
 	}
 
-	// this is maybe unnecessary, I made this for testing things, but I'll not
-	// remove this yet - Ansku
+	// In this method all of the databases tables are connected together and it will give information of specified candidate by her/his candidate number - Ansku
 	public Answers readAns(String id) {
 		Answers a = null;
 		try {
