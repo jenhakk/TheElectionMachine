@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-
 <%@ page import= "java.util.ArrayList" %>
-
 <%@ page import="data.Answers"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -18,7 +15,7 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="css/style2.css">
+<link rel="stylesheet" href="/css/style2.css">
 <title>Candidates questions</title>
 </head>
 
@@ -74,9 +71,11 @@
 
 			<% 
 			ArrayList<Answers> answers = (ArrayList<Answers>)request.getAttribute("answers");
-		
-			for (int i = 1; i < 11; i++)
-		
+			Answers c = (Answers)request.getAttribute("ans");
+			
+			int i;
+			for (i = 1; i < 11; i++)
+				
 			{
 			%>
 			
@@ -98,28 +97,28 @@
 				
 					<div>
 						<input type="radio" id="strdis"
-							name="ques<%=i%>" value="1"> 
-							<label for="strdis">Strongly disagree</label>
+							name="ques<%=i%>" value="1" <%if ((answers.get(i-1).getAnswer()) == 1) {out.println("checked"); }%>>  
+							<label for="strdis">Strongly disagree</label>	
 
 					</div>
 					<div>
 						<input type="radio" id="dis"
-							name="ques<%=i%>" value="2">
+							name="ques<%=i%>" value="2" <%if ((answers.get(i-1).getAnswer()) == 2) {out.println("checked"); }%>>
 							<label for="dis">Disagree</label>
 					</div>
 					<div>
 						<input type="radio" id="ntrl"
-							name="ques<%=i%>" value="3" checked> 
+							name="ques<%=i%>" value="3" <%if ((answers.get(i-1).getAnswer()) == 3) {out.println("checked"); }%>> 
 							<label for="ntrl">Neutral</label>
 					</div>
 					<div>
 						<input type="radio" id="agr"
-							name="ques<%=i%>" value="4"> 
+							name="ques<%=i%>" value="4" <%if ((answers.get(i-1).getAnswer()) == 4) {out.println("checked"); }%>> 
 							<label for="agr">Agree</label>
 					</div>
 					<div>
 						<input type="radio" id="stragr"
-							name="ques<%=i%>" value="5"> 
+							name="ques<%=i%>" value="5" <%if ((answers.get(i-1).getAnswer()) == 5) {out.println("checked"); }%>> 
 							<label for="stragr">Strongly agree</label>
 					</div>
 
@@ -129,18 +128,15 @@
 				<% } 
 									
 		 		%>
+		
+		
 		<div class="row justify-content-center">	
-			<div class="col-2"><button class="btn btn-primary" type="submit" style="margin-bottom: 50px;">SUBMIT</button></div>
-			<div class="col-2"><button class="btn btn-primary" name="back" onclick="history.back()" style="margin-bottom: 50px;">BACK</button></div>
+			<div class="col-2"><button class="btn btn-primary" type="submit">SUBMIT</button></div>
+			<div class="col-2"><button class="btn btn-primary" name="back" onclick="history.back()">BACK</button></div>
 		</div>
-		
-		
 		</form>
-			
-				
-				
-			
-		</div>
+	</div>
+	
 
 
 

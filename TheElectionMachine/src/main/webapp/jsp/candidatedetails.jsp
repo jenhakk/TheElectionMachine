@@ -22,7 +22,8 @@
 	
 	<div class="row">
 	<div class="col" style="position: absolute; left: 0; margin-top:0px; margin-right: 10px;"><a href="/index.html" class="btnhome">HOME</a></div>
-	<div class="col" style="position: absolute; left: 180px"; margin-top:0px;><a href="/ShowAll" class="btn btn-primary">BACK</a></div>
+	<div class="col" style="position: absolute; left: 180px"; margin-top:0px;><a href="/ShowAll" class="btn btn-primary" onclick="history.back()">BACK</a></div>
+	
 	</div>
 	<main class="main_candidate">
 
@@ -73,7 +74,7 @@
 			<!-- Not sure if we want to have this, can be deleted later -->
 			<div class="col">
 			
-			<!-- link to next servlet, which get candidates answers from a database -->
+			<!-- link to next servlet, which get candidates answers from a database. Send candidates id-number with the link-->
 				<a href="/ShowAnswersToUser?id=${candidate.id}" class="btn btn-primary">CHECK
 					CANDIDATES ANSWERS</a>
 			</div>

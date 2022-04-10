@@ -35,24 +35,23 @@ public class ShowSpesificCandidate extends HttpServlet {
 	 *      response)
 	 */
 
-	// I'm trying to get here the details of picked candidate, so the candidate_id
-	// comes from another .jsp-file named browsecandidate
+	// Here we get the details of picked candidate, so the candidate_id
+	// comes from browsecandidates.jsp-file
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		// This String id gets the parameter "id" from the browsecandidates.jsp-file
 		String id = request.getParameter("id");
 		// Object candidate is first empty
 		Candidate candi = null;
-		// if we get connection, then calls readCandi-method, set id for a parameter to get
-		// this candidates info
+		// if we get connection, then call readCandi-method, set id for a parameter to get
+		// this candidates info back
 		if (dao.getConnection()) {
 			// send id number to readCandi-method
 			candi = dao.readCandi(id);
 		}
-		// set this "candi" object to an attribute
+		// set this "candi" object to be sent to the candidatedetails.jsp-file
 		request.setAttribute("candidate", candi);
-		// send it to candidatedetails.jsp
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/candidatedetails.jsp");
 		rd.forward(request, response);
 

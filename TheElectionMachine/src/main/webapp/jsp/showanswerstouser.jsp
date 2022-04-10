@@ -22,12 +22,13 @@
     <main class="main_show">
     <div class="row">
 	<div class="col" style="position: absolute; left: 0; margin-top:0px; margin-right: 10px;"><a href="/index.html" class="btnhome">HOME</a></div>
-	<div class="col" style="position: absolute; left: 180px"; margin-top:0px;><a href="/ShowSpecificCandidate?id=" class="btn btn-primary">BACK</a></div>
+	<div class="col"><button type="button" class="btn btn-primary" name="back" onclick="history.back()" style="position: absolute; left: 180px;">BACK</button></div>
 	</div>
 		
         <h2 class="h2show"> </h2>
       
-        <!-- Here we get name of the candidate -->
+        <!-- Here we get name of the candidate from servlets "ShowAnswersToUser" ArrayList "list", scope the
+             details needed -->
         <div class="container-fluid" id="showcon">Candidates ${answers.get(0).getFirstname()} ${answers.get(0).getLastname()}s answers:</div>
  		
 	
@@ -41,7 +42,7 @@
             </thead>
             
             <tbody>
-            <!-- Go through candidates answers -->
+            <!-- Go through candidates answers by using foreach -->
             <c:forEach var="ques" items="${requestScope.answers}">
                 <tr>
                     <th scope="row"><c:out value="${ques.quess_id}" /></th>

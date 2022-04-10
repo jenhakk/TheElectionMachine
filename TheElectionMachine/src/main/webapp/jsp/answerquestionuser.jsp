@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-
 <%@ page import= "java.util.ArrayList" %>
-
 <%@ page import="data.Answers"%>
+<%@ page import="data.Questions"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,52 +27,14 @@
 	<div class="container">
 
 	<div class="col"><a href="index.html" class="btnhome">HOME</a></div>
-		<div class="row" id="row-ansque">
 
-			<div class="col-6">
-
-				<form action="/GetCandId" method="post" class="candform">
-
-					<div class="row" style="margin-bottom: 5px;">
-						<div class="col">
-							<label for="candi">Candidate</label>
-						</div>
-						<div class="col">
-							<input type="text" id="name" name="name"
-								value="${answers.get(0).getLastname()} ${answers.get(0).getFirstname()}"
-								disabled="disabled">
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col">
-							<label for="candi_id">Number</label>
-						</div>
-						<div class="col">
-							<input type="text" id="candi_id" name="candi_id"
-								value="${answers.get(0).getCandi_id()}" disabled="disabled">
-						</div>
-
-					</div>
-
-				</form>
-
-			</div>
-
-			<div class="col-6">
-				<a href="/GetCandId?id=${answers.get(0).getCandi_id()}"><div
-						class="btn btn-primary" id="but-personal">PERSONAL
-						INFORMATION</div></a>
-
-			</div>
-		</div>
 
 
 		<h2 class="answer">Answer questions and submit</h2>
-
+		<!-- ArrayList from AnswerQuestionsUser-servlets information -->
 			<% 
-			ArrayList<Answers> answers = (ArrayList<Answers>)request.getAttribute("answers");
-		
+			ArrayList<Questions> questions = (ArrayList<Questions>)request.getAttribute("questions");
+			// for loop for going through the questions we got
 			for (int i = 1; i < 11; i++)
 		
 			{
@@ -82,16 +42,17 @@
 			
 
 		<!-- Question element starts -->
-		<form action="/SaveValueButtons" method="POST" class="forminfo">
+		<!-- This jsp-file sends this forms answers to a SaveValueButtonsUser-servlet -->
+		<form action="/SaveValueButtonsUser" method="POST" class="forminfo">
 		
 			<div>
-				<input type="hidden" name="candidate" value="${candi.id}">
+				<!-- Hidden element to save questionids value -->
 				<input type="hidden" id="ques" name="quesid" value="<%=i%>"/>
 
 			</div>
 
-				
-				<p class="question"><%=i%>. <%=answers.get(i-1).getQuestion()%></p>
+				<!-- questions number and questions in a loop -->
+				<p class="question"><%=i%>. <%=questions.get(i-1).getQuestion()%></p>
 
 
 				<div class="card" id="ques-card">

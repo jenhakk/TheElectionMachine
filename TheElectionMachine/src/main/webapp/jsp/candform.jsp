@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="data.Candidate"%>
+<%@ page errorPage="error.jsp" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -84,26 +85,29 @@
                 <div class="form-group">
                     <label for="promo" id="label">Promote</label><br>
                     <textarea type="text" class="infoperarea" id="promo" name="promo" required>${requestScope.candform.promo}</textarea>
-                </div class="row">
-              	<div class="col">
-				<a href="/GetCandId?id=${candform.candi_id}" class="btn btn-primary">BACK</a>
-			</div>
-			<div class="col">
-				<input type="submit" class="btn btn-primary" name="ok" value="SAVE">
-			</div>
-            </form>
+                
                 </div>
-        </div>
-        <!-- Ansku TÄMÄTÄMÄTÄMÄ -->
-				<div class="col-12"><a href="/ShowAnswersToCandidate?id=${candform.candi_id}" class="btnindex">CHECK YOUR ANSWERS</a></div>
-		<!-- 4.4 10.38 -->		
+                
+                <div class="row justify-content-center">
+              	<div class="col-2">
+				<button type="button" class="btn btn-primary" name="back" onclick="history.back()">BACK</button>
+				</div>
+				<div class="col-2">
+				<input type="submit" class="btn btn-primary" name="ok" value="SAVE">
+				</div>
+				<!-- Ansku TÄMÄTÄMÄTÄMÄ -->
+				<div class="col-2"><a href="/ShowAnswersToCandidate?id=${candform.candi_id}" class="btn btn-primary">CHECK YOUR ANSWERS</a></div>
+				<!-- 4.4 10.38 -->		
 			
 				</div>
-        </div>      
+			
+            	</form>
+                </div>
+        </div>
+        
+             
 		
-       
-
-
+      
     </main>
 
 

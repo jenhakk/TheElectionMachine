@@ -69,14 +69,16 @@
 
 			</div>
 
-			<!-- Not sure if we want to have this, can be deleted later -->
-			<div class="col">
-				<a href="/CandidateLoginBack?id=${candper.candi_id}" class="btn btn-primary">BACK</a>
+			<div class="row justify-content-center">
+			<div class="col-3">
+				<button type="button" class="btn btn-primary" name="back" onclick="history.back()" style="margin-bottom:50px;">BACK</button>
 			</div>
-			<div class="col">
-				<a href="/ShowInfoForm?id=${candper.candi_id}" class="btn btn-primary">EDIT</a>
+			
+			<div class="col-3">
+			
+				<a href="/ShowInfoForm?id=${candper.candi_id}" class="btn btn-primary" style="margin-bottom:50px;">EDIT</a>
 			</div>
-
+			</div>
 		</div>
 	</main>
 
