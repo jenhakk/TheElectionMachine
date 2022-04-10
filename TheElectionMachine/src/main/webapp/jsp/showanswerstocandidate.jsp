@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="data.Answers"%>
 <%@ page import="dao.Dao" %>
+<%@ page errorPage="error.jsp" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 

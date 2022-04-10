@@ -199,18 +199,6 @@
 		object-position: 50% 20%;
 	}
 
-	/*Profile picture (img) for Gru -> different object positions*/
-	.profile-gru {
-		position: relative;
-		left: -40px;
-		height: 190px;
-		width: 190px;
-		border-radius: 50%;
-		border: 3px solid black;
-		object-fit: cover;
-		object-position: 40% 0%;
-	}
-
 	/*Candidate number*/
 	p.candnum {
 		font-weight: 500;
@@ -504,26 +492,16 @@
 		object-position: 50% 20%;
 	}
 
-	/*Profile picture (img) for Gru -> different object positions*/
-	.profile-gru {
-		position: relative;
-		left: -40px;
-		height: 190px;
-		width: 190px;
-		border-radius: 50%;
-		border: 3px solid black;
-		object-fit: cover;
-		object-position: 40% 0%;
-	}
-
+	
 	/*Candidate number*/
-	p.candnum {
+	p.candnumsui {
 		font-weight: 500;
 		font-size: 90px;
 		position: absolute;
 		top: 90px;
-		left: 30px;
+		left: 5px;
 		font-family: 'Annie Use Your Telescope', cursive;
+		
 	}
 
 	/*Frame for texts*/
