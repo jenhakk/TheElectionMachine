@@ -53,7 +53,7 @@
 
                                     <div class="image"><img class="profile"
                                             src="<c:out value="${cand.pic}"/>"></div>
-                                    <p class="candnum"><c:out value="${cand.id}" /></p>
+                                    <p class="candnumsui"><c:out value="${cand.id}" /></p>
                                 </div>
                                 <div class="col-7">
                                     <div class="card-body">
