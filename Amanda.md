@@ -4,4 +4,4 @@ My main task was to create a Delete function for candidate's answers, so I worke
 I also participated in creating functions concerning the voter, e.g. reading voter's answers and saving them for comparison with candidate's answers.
 When there were major problems, often the whole team got participated in solving them together.
 
-Overall, we communicated a lot during the project and were all the time aware what other members are working on. Everyone were present on each spring meetings.
+Overall, we communicated a lot during the project and were all the time aware what other members are working on. Everyone was present on each sprint meeting.
