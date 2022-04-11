@@ -31,13 +31,16 @@ public class DeleteAnswers extends HttpServlet {
 		String cid = request.getParameter("id");
 		int qid = Integer.parseInt(request.getParameter("qid"));
 		
-		System.out.println("DeleteAnswers cid: " + cid + " and qid: " + qid);
-		
+		// initializing empty Answers arraylist list
 		ArrayList<Answers> list = null;
 			
-		// if successful: getConnection() -> deleteAnswers(cid) -> insertZeroToAnswer(cid, qid) -> readAnsw(cid)
+		// if getConnection() is successful -> call deleteAnswers(cid)
 		if (dao.getConnection()) {
+			
+			// if deleteAnswers(cid) is successful -> call insertZeroToAnswer(cid, qid)
 			if (dao.deleteAnswers(cid) == true ) {
+				
+				// if insertZeroToAnswer is successful -> call readAnsw(cid) and set list it returns to Arraylist list
 				if (dao.insertZeroToAnswer(cid, qid) == true) {
 					list = dao.readAnsw(cid);
 					System.out.println("readAnsw() true" + cid);
@@ -54,10 +57,8 @@ public class DeleteAnswers extends HttpServlet {
 		} else {
 			System.out.println("No connection to database");
 		}
-		
-		System.out.println("DeleteAnswers list: " + list);
 
-		// sending reseted candidate's answer list to showanswerstocandidate.jsp via RequestDispatcher
+		// sending reseted candidate's answers as list to showanswerstocandidate.jsp via RequestDispatcher
 		request.setAttribute("answers", list);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/showanswerstocandidate.jsp");
