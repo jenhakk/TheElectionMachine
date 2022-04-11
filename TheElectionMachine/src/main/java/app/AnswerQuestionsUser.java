@@ -40,15 +40,15 @@ public class AnswerQuestionsUser extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		// First new ArrayList for getting election machines questions from a database
 		ArrayList<Questions> listq = null;
-
+		// If connection to database is okay, call daos method "readAllQuestion" and
+		// save values to a list named listq
 		if (dao.getConnection()) {
 			listq = dao.readAllQuestions();
 		}
-
+		// Send this listq as an attribute to a "answerquestionsuser.jsp"-file
 		request.setAttribute("questions", listq);
-
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/answerquestionuser.jsp");
 		rd.forward(request, response);
 	}
