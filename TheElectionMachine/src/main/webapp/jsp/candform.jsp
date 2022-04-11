@@ -95,7 +95,7 @@
 				<div class="col-2">
 				<input type="submit" class="btn btn-primary" name="ok" value="SAVE">
 				</div>
-				<!-- Ansku TÄMÄTÄMÄTÄMÄ -->
+			
 				<div class="col-2"><a href="/ShowAnswersToCandidate?id=${candform.candi_id}" class="btn btn-primary">CHECK YOUR ANSWERS</a></div>
 				<!-- 4.4 10.38 -->		
 			
