@@ -131,8 +131,8 @@
 		
 		
 		<div class="row justify-content-center">	
-			<div class="col-2"><button class="btn btn-primary" type="submit">SUBMIT</button></div>
 			<div class="col-2"><button class="btn btn-primary" name="back" onclick="history.back()">BACK</button></div>
+			<div class="col-2"><button class="btn btn-primary" type="submit">SUBMIT</button></div>
 		</div>
 		</form>
 	</div>
