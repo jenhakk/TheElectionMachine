@@ -92,18 +92,22 @@ public class Dao {
 		}
 	}
 
+	// Method gets candidates ids and points as parameters
+	// -Jenna ja Amanda
 	public ArrayList<Candidate> readAllTopThree(ArrayList<String> strlist, ArrayList<String> points) {
 		ArrayList<Candidate> list = new ArrayList<>();
 
+		// Loop through candidates list 
 		try {
 
 			int x = 0;
 			for (int i = 0; i < strlist.size(); i++) {
 				
-				
+				// get values from index
 				String id = strlist.get(x);
 				String point = points.get(x);
 
+				//select from database by candidates id
 				String sql = "select * from candidates where candidate_id = ?";
 				PreparedStatement stmt = conn.prepareStatement(sql);
 				// set id to to stmt
@@ -123,7 +127,10 @@ public class Dao {
 					a.setProfession(RS.getString("profession"));
 					a.setPoints(point);
 
+					// add object into a list
 					list.add(a);
+					
+					//Increase index number
 					x++;
 				}
 			}
@@ -201,6 +208,8 @@ public class Dao {
 		}
 	}
 
+	// Method for getting candidates answers by candidate id (int), return list of objects
+	// -Ansku
 	public ArrayList<Answers> readCandAns(int id) {
 		Answers a = null;
 		ArrayList<Answers> list = new ArrayList<>();
@@ -254,8 +263,9 @@ public class Dao {
 		}
 	}
 
+	// FIRST TEST METHOD, NOT USED
 	// Method for reading all info from candidate by id (from answerquestioncand.jsp
-	// id form)
+	// id form) 
 	public Candidate readAllInfo(String id) {
 		Candidate cand = null;
 		try {
@@ -284,7 +294,9 @@ public class Dao {
 
 	}
 
-	// Method to update candidates info from form
+	// Method to updates candidates info from form, gets object as a parameter
+	// returns answers by candidates id with readAns()
+	// -Jenna
 	public Answers UpdateCandidate(Answers can) {
 
 		try {
@@ -303,9 +315,6 @@ public class Dao {
 			pstmt.setInt(9, can.getCandi_id());
 
 			String candID = Integer.toString(can.getCandi_id());
-			System.out.println(
-					"daossa" + candID + can.getAge() + can.getFirstname() + can.getLastname() + can.getMunicipality()
-							+ can.getParty() + can.getProfession() + can.getPromo() + can.getPic() + can.getCandi_id());
 
 			int rowsUpdated = pstmt.executeUpdate();
 
@@ -326,6 +335,10 @@ public class Dao {
 		}
 	}
 
+	// method that gets Answers object as a parameter that includes candidates id, question id and answer
+	// updates candidates answer to a database. Calls method readAnsw (sends candidates id as a String) 
+	// and returns candidates answers.
+	// -Jenna
 	public ArrayList<Answers> updateAnswers(Answers a) {
 
 		try {
@@ -360,6 +373,7 @@ public class Dao {
 	// method that deletes candidate based on a candidate id
 	// gets id (=candidate id) as a parameter
 	// returns readAllCand()
+	// -Amanda
 	public ArrayList<Candidate> deleteCandidate(String id) {
 		try {
 			String sql = "delete from candidates where candidate_id = ?";
@@ -378,6 +392,7 @@ public class Dao {
 	// gets candidate id as a parameter
 	// uses PreparedStatement to set parameter in the statement
 	// returns true if removal was success
+	// -Amanda
 	public boolean deleteAnswers(String cid) {
 		try {
 			String sql = "delete from answers where candidate_id = ?";
@@ -399,6 +414,7 @@ public class Dao {
 	// i = iterations, ques_id = question id, adding 1 to both i and ques_id on each
 	// iteration
 	// returns true, if zeros are successfully inserted
+	// -Amanda
 	public boolean insertZeroToAnswer(String cid, int qid) {
 		int i = 0;
 		int ques_id = 1;
@@ -413,8 +429,6 @@ public class Dao {
 				ques_id++;
 				i++;
 			}
-			System.out.println("DAO While Loop: Iterations " + i);
-			System.out.println("DAO While Loop: Question Id " + ques_id);
 
 			return true;
 		} catch (SQLException e) {
