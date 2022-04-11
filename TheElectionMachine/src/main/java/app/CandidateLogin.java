@@ -53,8 +53,7 @@ public class CandidateLogin extends HttpServlet {
 			can = dao.readCandi(id);
 
 		}
-		// System.out.println(list);
-		System.out.println("listQ" + listq);
+	
 
 		request.setAttribute("candi", can);
 		request.setAttribute("answers", list);

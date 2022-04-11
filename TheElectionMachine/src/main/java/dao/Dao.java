@@ -284,7 +284,7 @@ public class Dao {
 
 	}
 
-	// Method to update candidates info from form
+	// Method to updates candidates info from form
 	public Answers UpdateCandidate(Answers can) {
 
 		try {
@@ -303,9 +303,6 @@ public class Dao {
 			pstmt.setInt(9, can.getCandi_id());
 
 			String candID = Integer.toString(can.getCandi_id());
-			System.out.println(
-					"daossa" + candID + can.getAge() + can.getFirstname() + can.getLastname() + can.getMunicipality()
-							+ can.getParty() + can.getProfession() + can.getPromo() + can.getPic() + can.getCandi_id());
 
 			int rowsUpdated = pstmt.executeUpdate();
 
@@ -326,6 +323,9 @@ public class Dao {
 		}
 	}
 
+	// method that gets Answers object as a parameter that includes candidates id, question id and answer
+	// updates candidates answer to a database. Calls method readAnsw (sends candidates id as a String) 
+	// and returns candidates answers.
 	public ArrayList<Answers> updateAnswers(Answers a) {
 
 		try {

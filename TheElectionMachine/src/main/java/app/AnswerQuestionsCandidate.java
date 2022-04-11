@@ -48,7 +48,7 @@ public class AnswerQuestionsCandidate extends HttpServlet {
 		if (dao.getConnection()) {
 			list = dao.readAnsw(id);
 		}
-		
+
 		request.setAttribute("answers", list);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/answerquestioncand.jsp");
