@@ -26,7 +26,7 @@ public class AnswerQuestionsCandidate extends HttpServlet {
 	public void init() {
 		dao = new Dao("jdbc:mysql://localhost:3306/minion", "admin", "password");
 	}
-
+	//Here is my comment
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
