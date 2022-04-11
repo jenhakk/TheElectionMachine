@@ -45,7 +45,6 @@ public class SaveValueButtons extends HttpServlet {
 		int qid = Integer.parseInt(request.getParameter("quesid"));
 		String cidd = request.getParameter("candidate");
 		
-
 		if (dao.getConnection()) {
 
 			//loop through questions
