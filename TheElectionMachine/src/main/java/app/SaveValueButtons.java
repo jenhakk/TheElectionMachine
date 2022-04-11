@@ -37,9 +37,10 @@ public class SaveValueButtons extends HttpServlet {
 			throws ServletException, IOException {
 
 
+		//Create empty list from Answers to store updated answers from dao
 		ArrayList<Answers> list = null;
 		
-		//haetaan candidaatin id ja kysymysid answerquestionscand.jsp:lt� ja muutetaan inteiksi
+		//Get candidateid and questionid from answerquestionscand.jsp and change them to integers
 		int cid = Integer.parseInt(request.getParameter("candidate"));
 		int qid = Integer.parseInt(request.getParameter("quesid"));
 		String cidd = request.getParameter("candidate");
@@ -47,24 +48,24 @@ public class SaveValueButtons extends HttpServlet {
 
 		if (dao.getConnection()) {
 
-			// loopataan kysymysten verran
+			//loop through questions
 			for (int i = 1; i < 11; i++) {
 
-				// haetaan jokaisen kysymyksen vastauksen arvo (i)
+				//get every questions' answers value (i)
 				int answer = Integer.parseInt(request.getParameter("ques" + (i)));
 
-				// luodaan olio jolle annetaan saadut arvot
+				//create object from Answers that get candidates id, question id and answer
 				Answers a = new Answers(cid, qid, answer);
 
-				System.out.println("eka" + cid + "toka" + qid + "kolmas" + answer + "answer" + a.getAnswer() + "ques"
-						+ a.getQuess_id());
-
-				// vied��n UpdateAnswers-metodille
+				//Send object as a parameter to dao's updateAnswers() and save results to the list
+				
 				list = dao.updateAnswers(a);
 
-				// kasvatetaan kysymyksen numeroa ja aloitetaan uudestaan
+				// increases question id to get to the next question 
 				qid++;
 			}
+			
+		// get new answers from dao to send forward to showanswerstocandidate.jsp	
 		list=dao.readAnsw(cidd);
 
 		} else {

@@ -55,9 +55,6 @@ public class AnswerQuestionsCandidate extends HttpServlet {
 			can = dao.readCandi(id);
 
 		}
-		// System.out.println(list);
-		System.out.println(list.get(1).getQuestion());
-		System.out.println(listq.get(1).getQuestion() + listq.get(5).getQuestion());
 
 		request.setAttribute("candi", can);
 		request.setAttribute("answers", list);
