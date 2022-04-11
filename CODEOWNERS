@@ -1,0 +1,6 @@
+TheElectionMachine/src/main/java/app/    @A-d-f
+TheElectionMachine/src/main/java/dao/    @amakarj
+TheElectionMachine/src/main/java/data/   @jenhakk
+*.jsp    @A-d-f @amakarj @jenhakk
+*.html   @jenhakk
+*.css    @jenhakk
