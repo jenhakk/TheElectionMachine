@@ -43,13 +43,25 @@ public class AnswerQuestionsCandidate extends HttpServlet {
 		String id = request.getParameter("id");
 
 		ArrayList<Answers> list = null;
-		
+		ArrayList<Questions> listq = null;
+		Candidate can = null;
+		Questions q = null;
 
 		if (dao.getConnection()) {
 			list = dao.readAnsw(id);
+
+			listq = dao.readAllQuestions();
+			
+			can = dao.readCandi(id);
+
 		}
-		
+		// System.out.println(list);
+		System.out.println(list.get(1).getQuestion());
+		System.out.println(listq.get(1).getQuestion() + listq.get(5).getQuestion());
+
+		request.setAttribute("candi", can);
 		request.setAttribute("answers", list);
+		request.setAttribute("oikea", listq);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/answerquestioncand.jsp");
 		rd.forward(request, response);
