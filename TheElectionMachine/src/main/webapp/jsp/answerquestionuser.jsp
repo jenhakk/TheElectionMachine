@@ -91,8 +91,8 @@
 									
 		 		%>
 		<div class="row justify-content-center">	
-			<div class="col-2"><button class="btn btn-primary" type="submit" style="margin-bottom: 50px;">SUBMIT</button></div>
 			<div class="col-2"><button class="btn btn-primary" name="back" onclick="history.back()" style="margin-bottom: 50px;">BACK</button></div>
+			<div class="col-2"><button class="btn btn-primary" type="submit" style="margin-bottom: 50px;">SUBMIT</button></div>
 		</div>
 		
 		
