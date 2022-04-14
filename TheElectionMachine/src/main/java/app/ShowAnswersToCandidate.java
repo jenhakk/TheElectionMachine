@@ -15,19 +15,31 @@ import data.Answers;
 
 /**
  * Servlet implementation class ShowAnswersToCandidate
+ * 
+ * Date: Apr 14-2022
+ * @author jenna hakkarainen, amanda karjalainen, anna-maria palm
+ * Servlet for getting candidate's id from candform.jsp, calls method readAnsw
+ * and sending info to showanswerstocandidate.jsp
  */
 @WebServlet("/ShowAnswersToCandidate")
 public class ShowAnswersToCandidate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Dao dao;
+	/**
+	 * initializing empty Dao object
+	 */
+	private Dao dao = null;
 
+	
+	/**
+	 * giving database connection information to dao object
+	 */
 	public void init() {
 		dao = new Dao("jdbc:mysql://localhost:3306/minion", "admin", "password");
 	}
-  
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
     public ShowAnswersToCandidate() {
         super();
         // TODO Auto-generated constructor stub
@@ -38,9 +50,16 @@ public class ShowAnswersToCandidate extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// This String id gets the parameter "id" from the .jsp-file
+				/**
+				 *Creating String id for getting candidate's id with getParameter
+				 */
 				String id = request.getParameter("id");
 				System.out.println(id);
 				//ArrayList about values we will get
+				
+				/**
+				 *Creating empty ArrayList from Answers
+				 */
 				ArrayList<Answers> list = null;
 				// if we get connection, then calls readCandi-method, set id for a parameter to
 				// get
