@@ -20,20 +20,32 @@ import data.Candidate;
 
 /**
  * Servlet implementation class GetCandId
+ * 
+ * Date: Apr 14-2022
+ * @author jenna hakkarainen, amanda karjalainen, anna-maria palm
+ * Servlet for getting all info from particular candidate by id from showanswerstocandidate.jsp, editquestionscand.jsp and answerquestioncand.jsp
+ * Get candidate's information from database with readAns-method and send it to candpersonal.jsp
+ * 
  */
 @WebServlet("/GetCandId")
 public class GetCandId extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	/**
+	 * initializing empty Dao object
+	 */
 	private Dao dao = null;
 
-	@Override
+	
+	/**
+	 * giving database connection information to dao object
+	 */
 	public void init() {
 		dao = new Dao("jdbc:mysql://localhost:3306/minion", "admin", "password");
 	}
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
 	public GetCandId() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -45,8 +57,14 @@ public class GetCandId extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String id = request.getParameter("id");
 		
+		/**
+		 *Creating String id for getting candidate's id with getParameter
+		 */
+		String id = request.getParameter("id");
+		/**
+		 *Creating empty ArrayList from Answers
+		 */
 		Answers caninfo = null;
 		if (dao.getConnection()) {
 			caninfo = dao.readAns(id);

@@ -17,12 +17,24 @@ import data.Questions;
 
 /**
  * Servlet implementation class AnswerQuestionsCandidate
+ *
+ * Date: Apr 14-2022
+ * @author jenna hakkarainen, amanda karjalainen, anna-maria palm
+ * Servlet for getting candidate's id from showanswertocandidate.jsp and reading questions from database to send them to answerquestioncand.jsp
  */
 @WebServlet("/AnswerQuestionsCandidate")
 public class AnswerQuestionsCandidate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * initializing empty Dao object
+	 */
 	private Dao dao = null;
 
+	
+	/**
+	 * giving database connection information to dao object
+	 */
 	public void init() {
 		dao = new Dao("jdbc:mysql://localhost:3306/minion", "admin", "password");
 	}
@@ -39,12 +51,27 @@ public class AnswerQuestionsCandidate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/**
+		 * Creating String variable id for receiving candidate's id with getParameter
+		 */
+		String id = request.getParameter("id");
+		/**
+		 * Initializing empty ArrayList from Answers class
+		 */
 		ArrayList<Answers> list = null;
+		/**
+		 * Initializing empty ArrayList from Questions
+		 */
 		ArrayList<Questions> listq = null;
+		/**
+		 * Initializing empty object from Candidate class
+		 */
 		Candidate can = null;
+		/**
+		 * Initializing empty object from Questions class
+		 */
 		Questions q = null;
 
 		if (dao.getConnection()) {
