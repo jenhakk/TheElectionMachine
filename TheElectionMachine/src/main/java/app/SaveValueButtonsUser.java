@@ -24,12 +24,25 @@ import data.Candidate;
 
 /**
  * Servlet implementation class SaveValueButtonsUser
+ * Date: Apr 14-2022
+ * @author jenna hakkarainen, amanda karjalainen, anna-maria palm
+ * Servlet for getting voter's answers from answerquestionuser.jsp, comparing answers with candidates and sorting best three candidates 
+ * Sends information to suitablecandidates.jsp
+ * 
+ * and sending info to showanswerstocandidate.jsp
  */
 @WebServlet("/SaveValueButtonsUser")
 public class SaveValueButtonsUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	/**
+	 * initializing empty Dao object
+	 */
 	private Dao dao = null;
 
+	
+	/**
+	 * giving database connection information to dao object
+	 */
 	public void init() {
 		dao = new Dao("jdbc:mysql://localhost:3306/minion", "admin", "password");
 	}
@@ -51,32 +64,53 @@ public class SaveValueButtonsUser extends HttpServlet {
 			throws ServletException, IOException {
 
 		// new ArrayList to store end user's answers
+		/**
+		 *Creating empty ArrayList from Integer
+		 */
 		ArrayList<Integer> userlist = new ArrayList<Integer>();
 
 		// loop through the number of questions
 		for (int i = 1; i < 11; i++) {
 
 			// search the answers value (i) from the jsp-file "answerquestionsuser"
+			/**
+			 *Creating int answer for reading answer value
+			 */
 			int answer = Integer.parseInt(request.getParameter("ques" + (i)));
 
 			// add the answer to a list "userlist"
 			userlist.add(answer);
 
 		}
-		// new linkedhashmap candpoints to save the three best candidates for the end user  
+		// new linkedhashmap candpoints to save the three best candidates for the end user
+		/**
+		 *Creating LinkedHashMap for matching answers
+		 */
 		LinkedHashMap<Integer, Integer> candpoints = new LinkedHashMap<Integer, Integer>();
 		
 		// Call method SortCandidatesByPoints, give candpoints and userlist as a parameter, save result to candpoints
 		candpoints = SortCandidatesByPoints(candpoints, userlist);
 
 		//Create entryset for candpoints
+		/**
+		 *Create entryset for candpoints
+		 */
 		Set<Map.Entry<Integer, Integer>> entrySet = candpoints.entrySet();
 
 		//Create iterators for keys and values
+		/**
+		 *Create iterators for keys
+		 */
 		Iterator<Map.Entry<Integer, Integer>> iteratorK = entrySet.iterator();
+		/**
+		 *Create iterators for values
+		 */
 		Iterator<Map.Entry<Integer, Integer>> iteratorV = entrySet.iterator();
 
 		// Initialize variables for iteration
+		/**
+		 *Initialize variables for iteration
+		 */
 		int i = 0;
 		int index = 1;
 		
@@ -118,18 +152,33 @@ public class SaveValueButtonsUser extends HttpServlet {
 		cand3p = cand3p*10;
 		
 		// Change keys to Strings
+		/**
+		 *Initialize String variables for candidates' ids
+		 */
 		String cand1str = Integer.toString(cand1);
 		String cand2str = Integer.toString(cand2);
 		String cand3str = Integer.toString(cand3);
 		
 		// Change values to Strings
+		/**
+		 *Initialize String variables for candidates' points
+		 */
 		String cand1pstr = Integer.toString(cand1p);
 		String cand2pstr = Integer.toString(cand2p);
 		String cand3pstr = Integer.toString(cand3p);
 	
 		// Create ArrayList for top three candidates, candidates answers and points
+		/**
+		 *Creating ArrayList from String for top3 candidates ids
+		 */
 		ArrayList<String> top3 = new ArrayList<String>();
+		/**
+		 *Creating ArrayList from Candidate for candidates
+		 */
 		ArrayList<Candidate> cands = new ArrayList<Candidate>();
+		/**
+		 *Creating ArrayList from String for candidates' points
+		 */
 		ArrayList<String> pointslist = new ArrayList<String>();
 		
 		// Add candidates (keys) to top3 list
@@ -202,6 +251,14 @@ public class SaveValueButtonsUser extends HttpServlet {
 	
 	// Method that compares end users and candidates answers, takes users answers as a list and candidates id as parameters
 	// returns number of matching answers
+	
+	/**
+	 * Method that compares end users and candidates answers, takes users answers as a list and candidates id as parameters
+	 * returns number of matching answers
+	 * @param ulist Integer ArrayList
+	 * @param can integer candidate id
+	 * @return a, number of matching answers
+	 */
 	private Integer compareAnswers(ArrayList<Integer> ulist, int can) {
 
 		ArrayList<Integer> candintlist = new ArrayList<Integer>();
@@ -232,6 +289,12 @@ public class SaveValueButtonsUser extends HttpServlet {
 
 
 	// 1. First called method, maps the candidates and their points as ascending order
+	/**
+	 * Method for mapping candidates and their points as ascending order
+	 * @param candpoints Integer LinkedHashMap
+	 * @param userlist Integer ArrayList
+	 * @return sorted candpointslist
+	 */
 	private LinkedHashMap SortCandidatesByPoints(LinkedHashMap<Integer, Integer> candpoints,
 			ArrayList<Integer> userlist) {
 

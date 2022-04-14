@@ -12,12 +12,24 @@ import dao.Dao;
 
 /**
  * Servlet implementation class ShowSpesificCandidate
+ * 
+ * Date: Apr 14-2022
+ * @author jenna hakkarainen, amanda karjalainen, anna-maria palm
+ * Servlet for getting candidate's id from browsecandidates.jsp, calls method readCandi
+ * and sending info to candidatedetails.jsp
  */
 @WebServlet("/ShowSpesificCandidate")
 public class ShowSpesificCandidate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Dao dao;
+	/**
+	 * initializing empty Dao object
+	 */
+	private Dao dao = null;
 
+	
+	/**
+	 * giving database connection information to dao object
+	 */
 	public void init() {
 		dao = new Dao("jdbc:mysql://localhost:3306/minion", "admin", "password");
 	}
@@ -41,8 +53,14 @@ public class ShowSpesificCandidate extends HttpServlet {
 			throws ServletException, IOException {
 		
 		// This String id gets the parameter "id" from the browsecandidates.jsp-file
+		/**
+		 *Creating String id for getting candidate's id with getParameter
+		 */
 		String id = request.getParameter("id");
 		// Object candidate is first empty
+		/**
+		 *Creating empty object from Candidate
+		 */
 		Candidate candi = null;
 		// if we get connection, then call readCandi-method, set id for a parameter to get
 		// this candidates info back

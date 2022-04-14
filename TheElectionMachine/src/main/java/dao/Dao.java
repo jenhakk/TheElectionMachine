@@ -9,10 +9,31 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import data.*;
 
+
+/**
+ * Dao class for handling database
+ * 
+ * Date: Apr 14-2022
+ * @author jenna hakkarainen, amanda karjalainen, anna-maria palm
+ *
+ */
+
 public class Dao {
+	/**
+	 * String value for url
+	 */
 	private String url;
+	/**
+	 * String value for username
+	 */
 	private String user;
+	/**
+	 * String value for password
+	 */
 	private String pass;
+	/**
+	 * Connection object for connection
+	 */
 	private Connection conn;
 
 	public Dao(String url, String user, String pass) {
@@ -22,6 +43,10 @@ public class Dao {
 	}
 
 	// connection to the database
+	/**
+	 * database connection method
+	 * @return boolean value of connection
+	 */
 	public boolean getConnection() {
 		try {
 			if (conn == null || conn.isClosed()) {
@@ -49,6 +74,15 @@ public class Dao {
 	// given statement, creates a new object Candidate and then adds this object to
 	// an ArrayList named list.
 	// -Ansku
+	/**
+	 * This method reads information of all the candidates from the database to an
+	 * ArrayList. First creates a new ArrayList, then connects to a database. After
+	 * executing the
+	 * given statement, creates a new object Candidate and then adds this object to
+	 * an ArrayList named list.
+	 * 
+	 * @return list
+	 */
 	public ArrayList<Candidate> readAllCand() {
 		ArrayList<Candidate> list = new ArrayList<>();
 		try {
@@ -73,6 +107,11 @@ public class Dao {
 
 	// this method can be used to read the questions from database to a list, it
 	// gets the questions number and the question. -Ansku
+	/**
+	 * this method can be used to read the questions from database to a list, it
+	 * gets the questions number and the question.
+	 * @return list
+	 */
 	public ArrayList<Questions> readAllQuestions() {
 		ArrayList<Questions> list = new ArrayList<>();
 		try {
@@ -94,6 +133,13 @@ public class Dao {
 
 	// Method gets candidates ids and points as parameters
 	// -Jenna ja Amanda
+	/**
+	 * 
+	 * Method gets candidates ids and points as parameters and get information from candidates by id
+	 * @param strlist 
+	 * @param points
+	 * @return list
+	 */
 	public ArrayList<Candidate> readAllTopThree(ArrayList<String> strlist, ArrayList<String> points) {
 		ArrayList<Candidate> list = new ArrayList<>();
 
@@ -145,6 +191,16 @@ public class Dao {
 	// and uses prepared statement to put this parameters String-data to the
 	// sql-sentence. Then it creates a new object Candidate c
 	// and reads information for this object from a database. -Ansku
+	/**
+	 * this method can be used to read selected candidates info from database. It
+	 * gets the candidates id as a parameter
+	 * and uses prepared statement to put this parameters String-data to the
+	 * sql-sentence. Then it creates a new object Candidate c
+	 * and reads information for this object from a database.
+	 * 
+	 * @param id
+	 * @return Candidate object
+	 */
 	public Candidate readCandi(String id) {
 		Candidate c = null;
 		try {
@@ -179,6 +235,12 @@ public class Dao {
 	}
 
 	// In this method all of the databases tables are connected together and it will give information of specified candidate by her/his candidate number - Ansku
+	/**
+	 * In this method all of the databases tables are connected together and it will give information of specified candidate by her/his candidate number
+	 * 
+	 * @param id
+	 * @return Answers object
+	 */
 	public Answers readAns(String id) {
 		Answers a = null;
 		try {
@@ -210,6 +272,12 @@ public class Dao {
 
 	// Method for getting candidates answers by candidate id (int), return list of objects
 	// -Ansku
+	/**
+	 * Method for getting candidates answers by candidate id (int), return list of objects
+	 * 
+	 * @param id
+	 * @return list
+	 */
 	public ArrayList<Answers> readCandAns(int id) {
 		Answers a = null;
 		ArrayList<Answers> list = new ArrayList<>();
@@ -238,6 +306,18 @@ public class Dao {
 	// sql-sentence. Then it creates a new object Candidate c
 	// and reads information for this object from a database. Then it adds this
 	// object to a list and returns it -Ansku
+	/**
+	 * this method can be used to read selected candidates answers + other info from
+	 * database. It
+	 * gets the candidates id as a parameter
+	 * and uses prepared statement to put this parameters String-data to the
+	 * sql-sentence. Then it creates a new object Candidate c
+	 * and reads information for this object from a database. Then it adds this
+	 * object to a list and returns it
+	 * 
+	 * @param id
+	 * @return list
+	 */
 	public ArrayList<Answers> readAnsw(String id) {
 		Answers a = null;
 		ArrayList<Answers> list = new ArrayList<>();
@@ -266,6 +346,14 @@ public class Dao {
 	// FIRST TEST METHOD, NOT USED
 	// Method for reading all info from candidate by id (from answerquestioncand.jsp
 	// id form) 
+	/**
+	 * FIRST TEST METHOD, NOT USED
+	 * Method for reading all info from candidate by id (from answerquestioncand.jsp
+	 * id form) 
+	 * 
+	 * @param id
+	 * @return Candidate object
+	 */
 	public Candidate readAllInfo(String id) {
 		Candidate cand = null;
 		try {
@@ -297,6 +385,12 @@ public class Dao {
 	// Method to updates candidates info from form, gets object as a parameter
 	// returns answers by candidates id with readAns()
 	// -Jenna
+	/**
+	 * Method to updates candidates info from form, gets object as a parameter
+	 * returns answers by candidates id with readAns()
+	 * @param can
+	 * @return return value of readAns (object)
+	 */
 	public Answers UpdateCandidate(Answers can) {
 
 		try {
@@ -339,6 +433,14 @@ public class Dao {
 	// updates candidates answer to a database. Calls method readAnsw (sends candidates id as a String) 
 	// and returns candidates answers.
 	// -Jenna
+	/**
+	 * method that gets Answers object as a parameter that includes candidates id, question id and answer
+	 * updates candidates answer to a database. Calls method readAnsw (sends candidates id as a String) 
+	 * and returns candidates answers.
+	 * 
+	 * @param a
+	 * @return return value readAnsw() list
+	 */
 	public ArrayList<Answers> updateAnswers(Answers a) {
 
 		try {
@@ -374,6 +476,12 @@ public class Dao {
 	// gets id (=candidate id) as a parameter
 	// returns readAllCand()
 	// -Amanda
+	/**
+	 *  method that deletes candidate based on a candidate id
+	 * gets id (=candidate id) as a parameter
+	 * @param id
+	 * @return return value of readAllCand (list)
+	 */
 	public ArrayList<Candidate> deleteCandidate(String id) {
 		try {
 			String sql = "delete from candidates where candidate_id = ?";
@@ -393,6 +501,15 @@ public class Dao {
 	// uses PreparedStatement to set parameter in the statement
 	// returns true if removal was success
 	// -Amanda
+	/**
+	 * method that deletes a candidate and it's answers on answers table based on
+	 * candidate id
+	 * gets candidate id as a parameter
+	 * uses PreparedStatement to set parameter in the statement
+	 * 
+	 * @param cid
+	 * @return boolean value of success
+	 */
 	public boolean deleteAnswers(String cid) {
 		try {
 			String sql = "delete from answers where candidate_id = ?";
@@ -415,6 +532,19 @@ public class Dao {
 	// iteration
 	// returns true, if zeros are successfully inserted
 	// -Amanda
+	/**
+	 * method that inserts 0 for the answers of all questions on answers table based
+	 * on candidate's id
+	 * ! resets one candidate's answers in practice
+	 * gets candidate id and question id as parameters
+	 * uses PreparedStatement in while loop to set both parameters in the statement
+	 * i = iterations, ques_id = question id, adding 1 to both i and ques_id on each
+	 * iteration
+	 * 
+	 * @param cid
+	 * @param qid
+	 * @return boolean value of success
+	 */
 	public boolean insertZeroToAnswer(String cid, int qid) {
 		int i = 0;
 		int ques_id = 1;

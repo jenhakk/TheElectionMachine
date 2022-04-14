@@ -15,19 +15,31 @@ import data.Answers;
 
 /**
  * Servlet implementation class CandidateLoginBack
+ * 
+ * Date: Apr 14-2022
+ * @author jenna hakkarainen, amanda karjalainen, anna-maria palm
+ * We don't use this!
+ * Servlet for getting candidate's id from showanswercandidate.jsp and getting some information from database and sending it forward to answerquestioncand.jsp and /SaveValueButtons
  */
 @WebServlet("/CandidateLoginBack")
 public class CandidateLoginBack extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Dao dao;
+	/**
+	 * initializing empty Dao object
+	 */
+	private Dao dao = null;
+
 	
+	/**
+	 * giving database connection information to dao object
+	 */
 	public void init() {
 		dao = new Dao("jdbc:mysql://localhost:3306/minion", "admin", "password");
 	}
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
     public CandidateLoginBack() {
         super();
         // TODO Auto-generated constructor stub
@@ -36,9 +48,17 @@ public class CandidateLoginBack extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		/**
+		 *Creating String id for getting candidate's id with getParameter
+		 */
 		String id = request.getParameter("id");
 		
+		/**
+		 *Creating empty ArrayList from Answers
+		 */
 		ArrayList<Answers> list = null;
 		
 		if (dao.getConnection()) {

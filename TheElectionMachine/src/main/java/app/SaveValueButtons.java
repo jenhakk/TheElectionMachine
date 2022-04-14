@@ -13,17 +13,32 @@ import data.Answers;
 
 /**
  * Servlet implementation class SaveValueButtons
+ * Date: Apr 14-2022
+ * @author jenna hakkarainen, amanda karjalainen, anna-maria palm
+ * Servlet for getting candidate's id in String and Integer and question id from answerquestioncand.jsp and editquestioncand.jsp, 
+ * calling methods updateAnswers and readAnsw, 
+ * and sending info to showanswerstocandidate.jsp
  */
+
 @WebServlet("/SaveValueButtons")
 public class SaveValueButtons extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	/**
+	 * initializing empty Dao object
+	 */
 	private Dao dao = null;
 
+	
+	/**
+	 * giving database connection information to dao object
+	 */
 	public void init() {
 		dao = new Dao("jdbc:mysql://localhost:3306/minion", "admin", "password");
-
-
 	}
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
 	public SaveValueButtons() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -38,11 +53,23 @@ public class SaveValueButtons extends HttpServlet {
 
 
 		//Create empty list from Answers to store updated answers from dao
+		/**
+		 *Creating empty ArrayList from Answers
+		 */
 		ArrayList<Answers> list = null;
 		
 		//Get candidateid and questionid from answerquestionscand.jsp and change them to integers
+		/**
+		 *Creating int cid for getting candidate's id with getParameter
+		 */
 		int cid = Integer.parseInt(request.getParameter("candidate"));
+		/**
+		 *Creating int qid for getting question's id with getParameter
+		 */
 		int qid = Integer.parseInt(request.getParameter("quesid"));
+		/**
+		 *Creating String cidd for getting candidate's id with getParameter
+		 */
 		String cidd = request.getParameter("candidate");
 		
 		if (dao.getConnection()) {

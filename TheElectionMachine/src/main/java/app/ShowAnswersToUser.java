@@ -15,12 +15,24 @@ import data.Answers;
 
 /**
  * Servlet implementation class ShowAnswersToUser
+ * 
+ * Date: Apr 14-2022
+ * @author jenna hakkarainen, amanda karjalainen, anna-maria palm
+ * Servlet for getting candidate's id from candidatedetails.jsp, calls method readAnsw
+ * and sending info to showanswerstouser.jsp
  */
 @WebServlet("/ShowAnswersToUser")
 public class ShowAnswersToUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Dao dao;
+	/**
+	 * initializing empty Dao object
+	 */
+	private Dao dao = null;
 
+	
+	/**
+	 * giving database connection information to dao object
+	 */
 	public void init() {
 		dao = new Dao("jdbc:mysql://localhost:3306/minion", "admin", "password");
 	}
@@ -41,8 +53,14 @@ public class ShowAnswersToUser extends HttpServlet {
 			throws ServletException, IOException {
 
 		// This String id gets the parameter "id" from the candidatedetails.jsp-file
+		/**
+		 *Creating String id for getting candidate's id with getParameter
+		 */
 		String id = request.getParameter("id");
 		// ArrayList for to store values we will get, first empty
+		/**
+		 *Creating empty ArrayList from Answers
+		 */
 		ArrayList<Answers> list = null;
 		// if we get connection, then calls readAnsw-method, set id for a parameter to
 		// get this candidates info from database
