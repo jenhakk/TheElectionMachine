@@ -14,6 +14,8 @@ Voter can answer questions and browse candidates. After answering questions, the
 
 We started the project by deciding how the features would be implemented and what the site would look like. We designed the layout with Figma. Here is the link to [Figma](https://www.figma.com/file/OV6hQmNGV3PbAVEQjBtPgV/Election-Machine-Frontpage?node-id=0%3A1).
 
+*I started creating the base for the site with HTML before it was transformed to jsp files. [Here](https://jenhakk.github.io/Base-for-Election-machine/index2.html) you can see little bit of the process of it and see the first raw (non-functional) version of the site.*
+
 ## End users view
 
 On the front page user can choose from three different functions: **Browse candidates, Answer questions and Are you a candidate?** First two are for the voter.
@@ -36,3 +38,6 @@ As in all of our projects, here are some **extras**
 The project was rewarding to make and we learnt many new things. The schedule was thight since we had only few weeks to create it. The most difficult part was saving the candidate's and voter's answers. We didn't get much information about it from the course material but we solved the problem by using scriplets in JSP files. 
 
 In the next part we will contine with admin features.
+
+
+Team: [Jenna Hakkarainen](https://github.com/jenhakk), [Amanda Karjalainen](https://github.com/amakarj), [Anna-Maria Palm](https://github.com/A-d-f)
