@@ -16,10 +16,10 @@ We started the project by deciding how the features would be implemented and wha
 
 ### End users view
 
-On the front page user can choose from three different functions: Browse candidates, Answer questions and Are you a candidate? First two are for the voter.
+On the front page user can choose from three different functions: **Browse candidates, Answer questions and Are you a candidate?** First two are for the voter.
 When user click Browse candidates button they will be directed to a page where all candidates are listed. Candidate's information comes from servlet which reads data from database using DAO class' method. User can select one of the candidates and see more specific information about them. They can also check candidate's answers. 
 
-As always in our projects, here are some **extras** :D
+As in all of our projects, here are some **extras**
  * Error page 
  * Overall investing in visual appearance
  * Candidate can edit their personal information
